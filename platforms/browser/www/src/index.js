@@ -3,6 +3,8 @@ import foo from './foo';
 import preload from './mz/sanic/preloader';
 
 document.addEventListener('deviceready', function () {
+    window.p = this;
+
     foo();
 
     let config = {
@@ -27,8 +29,22 @@ document.addEventListener('deviceready', function () {
     let gameOver; // condicion de fin de juego
     let bombs; // grupo de bombas
 
+    function resize() {
+        var canvas = game.canvas, width = window.innerWidth, height = window.innerHeight;
+        var wratio = width / height, ratio = canvas.width / canvas.height;
+     
+        if (wratio < ratio) {
+            canvas.style.width = width + "px";
+            canvas.style.height = (width / ratio) + "px";
+        } else {
+            canvas.style.width = (height * ratio) + "px";
+            canvas.style.height = height + "px";
+        }
+    }
+
     function create() {
-        console.log(this);
+        window.addEventListener('resize', resize);
+        resize();
 
         this.add.image(400, 300, 'sky');
 
@@ -48,7 +64,10 @@ document.addEventListener('deviceready', function () {
         /* creamos al heroe o jugador----------------------------------------------------------------------------------------------------------------------- */
         // agregamos un ArcadeSprite del jugador
         player = this.physics.add.sprite(100, 450, 'sonic3', 'stand/sonic3_sprites_01.png');
+        // la camara principal sigue al jugador
+        this.cameras.main.setBounds(0, 0, 800, 600);
         this.cameras.main.startFollow(player);
+        this.cameras.main.setZoom(1.5);
 
         /* The function generateFrameNames() creates a whole bunch of frame names by creating zero-padded numbers between start and end, 
         surrounded by prefix and suffix). 1 is the start index, 13 the end index and the 2 is the number of digits to use */
@@ -60,7 +79,7 @@ document.addEventListener('deviceready', function () {
         });
 
         /* when it lands after jumping it will bounce ever so slightly */
-        player.setBounce(0.2);
+        player.setBounce(0.0);
         /* As we set the game to be 800 x 600 then the player won't be able to run outside of this area */
         player.setCollideWorldBounds(true);
 

@@ -5,7 +5,11 @@ Proyecto prototipo de sommersault trekking
 
 Todos los fuentes del juego deben colocarse en www/.
 
-## Compilar y correr el juego
+## Abrir juego en browser
+
+`cordova run browser --live-reload`
+
+## Compilar y correr el juego (ejecutar desde www/)
 
 `npm run execute`
 
