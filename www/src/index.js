@@ -10,7 +10,8 @@ document.addEventListener('deviceready', function () {
     let config = {
         type: Phaser.AUTO,
         width: 800,
-        height: 600,
+        height: 800,
+        parent: 'main',
         physics: {
             default: 'arcade',
             arcade: { gravity: { y: 300 }, debug: false }
@@ -19,6 +20,8 @@ document.addEventListener('deviceready', function () {
     };
 
     let game = new Phaser.Game(config);
+
+    let background = null;
 
     let player; // objeto del heroe
     let cursors; // manejador de teclado
@@ -29,16 +32,22 @@ document.addEventListener('deviceready', function () {
     let gameOver; // condicion de fin de juego
     let bombs; // grupo de bombas
 
+    /**
+     * Funcion de resize que se ejecutara cada vez que el dispoistivo cambie de tamano o disposicion
+     */
     function resize() {
-        var canvas = game.canvas, width = window.innerWidth, height = window.innerHeight;
-        var wratio = width / height, ratio = canvas.width / canvas.height;
-     
-        if (wratio < ratio) {
-            canvas.style.width = width + "px";
-            canvas.style.height = (width / ratio) + "px";
+        let canvas = game.canvas;
+        let win_width = window.innerWidth;
+        let win_height = window.innerHeight;
+        let wratio = win_width / win_height;
+        let canvas_ratio = canvas.width / canvas.height;
+
+        if (wratio < canvas_ratio) {
+            canvas.style.width = win_width + "px";
+            canvas.style.height = (win_width / canvas_ratio) + "px";
         } else {
-            canvas.style.width = (height * ratio) + "px";
-            canvas.style.height = height + "px";
+            canvas.style.width = (win_height * canvas_ratio) + "px";
+            canvas.style.height = win_height + "px";
         }
     }
 
@@ -46,6 +55,7 @@ document.addEventListener('deviceready', function () {
         window.addEventListener('resize', resize);
         resize();
 
+        //background = this.add.tileSprite(0, 0, 400, 300, 'sky');
         this.add.image(400, 300, 'sky');
 
         /* creo un grupo de cuerpos estaticos con iguales propiedades */
@@ -82,10 +92,6 @@ document.addEventListener('deviceready', function () {
         player.setBounce(0.0);
         /* As we set the game to be 800 x 600 then the player won't be able to run outside of this area */
         player.setCollideWorldBounds(true);
-
-        console.log("flips...")
-        console.log(player.flipX);
-        console.log(player.flipY);
 
         /* creamos la animacion del movimiento hacia la izquierda */
         this.anims.create({ key: 'left', frames: walkFrames, frameRate: 10, repeat: -1 });
@@ -156,16 +162,21 @@ document.addEventListener('deviceready', function () {
             gameOver = true;
         });
 
-        console.log({player});
+        console.log({ player });
     }
 
     function update() {
+        //console.log({ touch: { x: this.input.pointer1.x, y: this.input.pointer1.y } })
+        document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
+
         if (gameOver) return;
 
         if (cursors.left.isDown) {
             player.setVelocityX(-160);
             player.anims.play('left', true);
             player.flipX = true;
+
+
         } else if (cursors.right.isDown) {
             player.setVelocityX(160);
             player.anims.play('right', true);
