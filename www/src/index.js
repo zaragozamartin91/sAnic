@@ -1,22 +1,20 @@
 import Phaser from 'phaser';
-import foo from './foo';
 import preload from './mz/sanic/preloader';
 
 document.addEventListener('deviceready', function () {
-    window.p = this;
-
-    foo();
+    // create a new scene named "Game"
+    let gameScene = new Phaser.Scene('Game');
 
     let config = {
         type: Phaser.AUTO,
-        width: 800,
-        height: 800,
+        width: window.innerWidth,
+        height: window.innerHeight * 0.9,
         parent: 'main',
+        scene: gameScene,
         physics: {
             default: 'arcade',
             arcade: { gravity: { y: 300 }, debug: false }
         },
-        scene: { preload, create, update }
     };
 
     let game = new Phaser.Game(config);
@@ -36,22 +34,28 @@ document.addEventListener('deviceready', function () {
      * Funcion de resize que se ejecutara cada vez que el dispoistivo cambie de tamano o disposicion
      */
     function resize() {
+        console.log("RESIZE!");
         let canvas = game.canvas;
-        let win_width = window.innerWidth;
-        let win_height = window.innerHeight;
-        let wratio = win_width / win_height;
-        let canvas_ratio = canvas.width / canvas.height;
+        // let win_width = window.innerWidth;
+        // let win_height = window.innerHeight;
+        // let wratio = win_width / win_height;
+        // let canvas_ratio = canvas.width / canvas.height;
 
-        if (wratio < canvas_ratio) {
-            canvas.style.width = win_width + "px";
-            canvas.style.height = (win_width / canvas_ratio) + "px";
-        } else {
-            canvas.style.width = (win_height * canvas_ratio) + "px";
-            canvas.style.height = win_height + "px";
-        }
+        // if (wratio < canvas_ratio) {
+        //     canvas.style.width = win_width + "px";
+        //     canvas.style.height = (win_width / canvas_ratio) + "px";
+        // } else {
+        //     canvas.style.width = (win_height * canvas_ratio) + "px";
+        //     canvas.style.height = win_height + "px";
+        // }
+
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerHeight * 0.9 + "px";
     }
 
-    function create() {
+    gameScene.preload = preload;
+
+    gameScene.create = function () {
         window.addEventListener('resize', resize);
         resize();
 
@@ -74,10 +78,12 @@ document.addEventListener('deviceready', function () {
         /* creamos al heroe o jugador----------------------------------------------------------------------------------------------------------------------- */
         // agregamos un ArcadeSprite del jugador
         player = this.physics.add.sprite(100, 450, 'sonic3', 'stand/sonic3_sprites_01.png');
+
+        /* Con esta funcion podemos establecer los limites de la camara */
+        //this.cameras.main.setBounds(0, 0, 800, 600);
         // la camara principal sigue al jugador
-        this.cameras.main.setBounds(0, 0, 800, 600);
         this.cameras.main.startFollow(player);
-        this.cameras.main.setZoom(1.5);
+        this.cameras.main.setZoom(1);
 
         /* The function generateFrameNames() creates a whole bunch of frame names by creating zero-padded numbers between start and end, 
         surrounded by prefix and suffix). 1 is the start index, 13 the end index and the 2 is the number of digits to use */
@@ -90,8 +96,8 @@ document.addEventListener('deviceready', function () {
 
         /* when it lands after jumping it will bounce ever so slightly */
         player.setBounce(0.0);
-        /* As we set the game to be 800 x 600 then the player won't be able to run outside of this area */
-        player.setCollideWorldBounds(true);
+        /* Esta funcion hace que el personaje colisione con los limites del juego */
+        player.setCollideWorldBounds(false);
 
         /* creamos la animacion del movimiento hacia la izquierda */
         this.anims.create({ key: 'left', frames: walkFrames, frameRate: 10, repeat: -1 });
@@ -165,7 +171,7 @@ document.addEventListener('deviceready', function () {
         console.log({ player });
     }
 
-    function update() {
+    gameScene.update = function () {
         //console.log({ touch: { x: this.input.pointer1.x, y: this.input.pointer1.y } })
         document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
 
