@@ -5,10 +5,13 @@ document.addEventListener('deviceready', function () {
     // create a new scene named "Game"
     let gameScene = new Phaser.Scene('Game');
 
+    let worldHeight = Math.min(window.innerWidth, 600);
+    let worldWidth = Math.min(window.innerHeight, 800);
+
     let config = {
         type: Phaser.AUTO,
-        width: window.innerWidth,
-        height: window.innerHeight * 0.9,
+        width: worldWidth,
+        height: worldHeight,
         parent: 'main',
         scene: gameScene,
         physics: {
@@ -29,6 +32,8 @@ document.addEventListener('deviceready', function () {
 
     let gameOver; // condicion de fin de juego
     let bombs; // grupo de bombas
+
+    let bg; // background
 
     /**
      * Funcion de resize que se ejecutara cada vez que el dispoistivo cambie de tamano o disposicion
@@ -56,11 +61,15 @@ document.addEventListener('deviceready', function () {
     gameScene.preload = preload;
 
     gameScene.create = function () {
-        window.addEventListener('resize', resize);
-        resize();
+        // window.addEventListener('resize', resize);
+        // resize();
 
         //background = this.add.tileSprite(0, 0, 400, 300, 'sky');
-        this.add.image(400, 300, 'sky');
+        //this.add.image(400, 300, 'sky');
+        //bg = this.add.tileSprite(100, 450, 800, 800,  'background');
+        bg = this.add.tileSprite(worldWidth / 2, worldHeight / 2, 800, 800, 'background');
+        bg.scrollFactorX = 0;
+        bg.scrollFactorY = 0;
 
         /* creo un grupo de cuerpos estaticos con iguales propiedades */
         /* this.physics refiere al objeto physics declarado en la configuracion */
@@ -149,7 +158,7 @@ document.addEventListener('deviceready', function () {
 
                 let bomb = bombs.create(x, 16, 'bomb');
                 bomb.setBounce(1);
-                bomb.setCollideWorldBounds(true);
+                bomb.setCollideWorldBounds(false);
                 bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
             }
         });
@@ -196,5 +205,9 @@ document.addEventListener('deviceready', function () {
         if (cursors.up.isDown && player.body.touching.down) {
             player.setVelocityY(-330);
         }
+
+        bg.tilePositionX += player.body.velocity.x * 0.01 //change this to a value suited for your needs change - to + to change direction
+        bg.tilePositionY += player.body.velocity.y * 0.01 //change this to a value suited for your needs change - to + to change direction
+        console.log("bg.tilePositionX: " + bg.tilePositionX);
     }
 });
