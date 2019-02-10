@@ -78,6 +78,8 @@ class Player {
      */
     rotate(degrees) { this.player.angle = this.player.angle + degrees; }
 
+    resetRotation() { this.player.angle = 0; }
+
     /**
      * Reproduce una animacion.
      * @param {String} anim Nombre de la animacion.
@@ -93,11 +95,13 @@ class Player {
     update({ pressLeft, pressRight, jump, standing }) {
         if (jump) {
             this.setVelocityY(-330);
-            //this.playAnim('jump', true);
+            this.playAnim('jump', true);
             return;
         }
 
         if(standing) {
+            this.resetRotation();
+
             if(pressLeft) {
                 this.setVelocityX(-160);
                 this.playAnim('left', true);
@@ -117,7 +121,8 @@ class Player {
             return;
         } else {
             // jugador esta en el aire
-            //this.playAnim('jump', true);
+            this.playAnim('jump', true);
+            this.rotate(1);
         }
     }
 }

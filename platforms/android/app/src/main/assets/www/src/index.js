@@ -23,7 +23,7 @@ document.addEventListener('deviceready', function () {
         scene: gameScene,
         physics: {
             default: 'arcade',
-            arcade: { gravity: { y: 300 }, debug: false }
+            arcade: { gravity: { y: 300 }, debug: true }
         },
     };
 
@@ -73,6 +73,10 @@ document.addEventListener('deviceready', function () {
         //this.add.image(400, 300, 'sky');
         //bg = this.add.tileSprite(100, 450, 800, 800,  'background');
         bg = new Background(this, worldWidth / 2, worldHeight / 2, worldWidth, worldHeight);
+
+        scoreText = this.add.text(0, 0, 'Score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText.scrollFactorX = 0;
+        scoreText.scrollFactorY = 0;
 
         /* creo un grupo de cuerpos estaticos con iguales propiedades */
         /* this.physics refiere al objeto physics declarado en la configuracion */
@@ -148,8 +152,6 @@ document.addEventListener('deviceready', function () {
                 bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
             }
         });
-
-        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
         // se agregan las bombas ---------------------------------------------------------------------------------
         bombs = this.physics.add.group();
