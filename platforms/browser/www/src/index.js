@@ -1,26 +1,33 @@
 import Phaser from 'phaser';
-import foo from './foo';
 import preload from './mz/sanic/preloader';
+import Background from './mz/sanic/Background';
+import Player from './mz/sanic/Player';
+
+// set to either landscape
+screen.orientation.lock('portrait-primary');
 
 document.addEventListener('deviceready', function () {
-    window.p = this;
+    // create a new scene named "Game"
+    let gameScene = new Phaser.Scene('Game');
 
-    foo();
+    let worldWidth = Math.min(window.innerWidth, 1366);
+    let worldHeight = Math.min(window.innerHeight, 768);
 
     let config = {
         type: Phaser.AUTO,
-        width: 800,
-        height: 600,
+        width: worldWidth,
+        height: worldHeight,
+        parent: 'main',
+        scene: gameScene,
         physics: {
             default: 'arcade',
             arcade: { gravity: { y: 300 }, debug: false }
         },
-        scene: { preload, create, update }
     };
 
     let game = new Phaser.Game(config);
 
-    let player; // objeto del heroe
+    const player = new Player(); // objeto del heroe
     let cursors; // manejador de teclado
 
     let score = 0;
@@ -29,24 +36,41 @@ document.addEventListener('deviceready', function () {
     let gameOver; // condicion de fin de juego
     let bombs; // grupo de bombas
 
+    let bg; // background
+
+    /**
+     * Funcion de resize que se ejecutara cada vez que el dispoistivo cambie de tamano o disposicion
+     */
     function resize() {
-        var canvas = game.canvas, width = window.innerWidth, height = window.innerHeight;
-        var wratio = width / height, ratio = canvas.width / canvas.height;
-     
-        if (wratio < ratio) {
-            canvas.style.width = width + "px";
-            canvas.style.height = (width / ratio) + "px";
+        console.log("RESIZE!");
+        let canvas = game.canvas;
+        let win_width = window.innerWidth;
+        let win_height = window.innerHeight;
+        let wratio = win_width / win_height;
+        let canvas_ratio = canvas.width / canvas.height;
+
+        if (wratio < canvas_ratio) {
+            canvas.style.width = win_width + "px";
+            canvas.style.height = (win_width / canvas_ratio) + "px";
         } else {
-            canvas.style.width = (height * ratio) + "px";
-            canvas.style.height = height + "px";
+            canvas.style.width = (win_height * canvas_ratio) + "px";
+            canvas.style.height = win_height + "px";
         }
+
+        // canvas.style.width = window.innerWidth + "px";
+        // canvas.style.height = window.innerHeight * 0.9 + "px";
     }
 
-    function create() {
-        window.addEventListener('resize', resize);
-        resize();
+    gameScene.preload = preload;
 
-        this.add.image(400, 300, 'sky');
+    gameScene.create = function () {
+        // window.addEventListener('resize', resize);
+        // resize();
+
+        //background = this.add.tileSprite(0, 0, 400, 300, 'sky');
+        //this.add.image(400, 300, 'sky');
+        //bg = this.add.tileSprite(100, 450, 800, 800,  'background');
+        bg = new Background(this, worldWidth / 2, worldHeight / 2, worldWidth, worldHeight);
 
         /* creo un grupo de cuerpos estaticos con iguales propiedades */
         /* this.physics refiere al objeto physics declarado en la configuracion */
@@ -63,42 +87,23 @@ document.addEventListener('deviceready', function () {
 
         /* creamos al heroe o jugador----------------------------------------------------------------------------------------------------------------------- */
         // agregamos un ArcadeSprite del jugador
-        player = this.physics.add.sprite(100, 450, 'sonic3', 'stand/sonic3_sprites_01.png');
-        // la camara principal sigue al jugador
-        this.cameras.main.setBounds(0, 0, 800, 600);
-        this.cameras.main.startFollow(player);
-        this.cameras.main.setZoom(1.5);
+        player.init(gameScene, 100, 450);
 
-        /* The function generateFrameNames() creates a whole bunch of frame names by creating zero-padded numbers between start and end, 
-        surrounded by prefix and suffix). 1 is the start index, 13 the end index and the 2 is the number of digits to use */
-        let standFrames = this.anims.generateFrameNames('sonic3', {
-            start: 1, end: 13, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
-        });
-        let walkFrames = this.anims.generateFrameNames('sonic3', {
-            start: 18, end: 25, zeroPad: 2, prefix: 'walk/sonic3_sprites_', suffix: '.png'
-        });
+        /* Con esta funcion podemos establecer los limites de la camara */
+        //this.cameras.main.setBounds(0, 0, 800, 600);
+        // la camara principal sigue al jugador
+        this.cameras.main.startFollow(player.sprite);
+        this.cameras.main.setZoom(1);
 
         /* when it lands after jumping it will bounce ever so slightly */
         player.setBounce(0.0);
-        /* As we set the game to be 800 x 600 then the player won't be able to run outside of this area */
-        player.setCollideWorldBounds(true);
-
-        console.log("flips...")
-        console.log(player.flipX);
-        console.log(player.flipY);
-
-        /* creamos la animacion del movimiento hacia la izquierda */
-        this.anims.create({ key: 'left', frames: walkFrames, frameRate: 10, repeat: -1 });
-
-        this.anims.create({ key: 'stand', frames: standFrames, frameRate: 1, repeat: -1 });
-
-        /* creamos la animacion del movimiento hacia la derecha */
-        this.anims.create({ key: 'right', frames: walkFrames, frameRate: 10, repeat: -1 });
+        /* Esta funcion hace que el personaje colisione con los limites del juego */
+        player.setCollideWorldBounds(false);
 
         /* In order to allow the player to collide with the platforms we can create a Collider object. 
         This object monitors two physics objects (which can include Groups) and checks for collisions or overlap between them. 
         If that occurs it can then optionally invoke your own callback, but for the sake of just colliding with platforms we don't require that */
-        this.physics.add.collider(player, platforms);
+        this.physics.add.collider(player.sprite, platforms);
 
         //Phaser has a built-in Keyboard manager 
         //This populates the cursors object with four properties: up, down, left, right, that are all instances of Key objects. 
@@ -123,7 +128,7 @@ document.addEventListener('deviceready', function () {
 
         //This tells Phaser to check for an overlap between the player and any star in the stars Group
         //this.physics.add.overlap(player, stars, collectStar, null, this);
-        this.physics.add.overlap(player, stars, (_, star) => {
+        this.physics.add.overlap(player.sprite, stars, (_, star) => {
             star.disableBody(true, true);
 
             score += 10;
@@ -137,7 +142,7 @@ document.addEventListener('deviceready', function () {
 
                 let bomb = bombs.create(x, 16, 'bomb');
                 bomb.setBounce(1);
-                bomb.setCollideWorldBounds(true);
+                bomb.setCollideWorldBounds(false);
                 bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
             }
         });
@@ -149,27 +154,32 @@ document.addEventListener('deviceready', function () {
 
         this.physics.add.collider(bombs, platforms);
 
-        this.physics.add.collider(player, bombs, (p, _) => {
+        this.physics.add.collider(player.sprite, bombs, (p, _) => {
             this.physics.pause();
             p.setTint(0xff0000);
             p.anims.play('turn');
             gameOver = true;
         });
 
-        console.log({player});
+        console.log({ player });
     }
 
-    function update() {
+    gameScene.update = function () {
+        //document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
+        document.querySelector("#title").innerHTML = screen.orientation.type;
+
         if (gameOver) return;
 
         if (cursors.left.isDown) {
             player.setVelocityX(-160);
             player.anims.play('left', true);
             player.flipX = true;
+            //player.flipX(true);
         } else if (cursors.right.isDown) {
             player.setVelocityX(160);
             player.anims.play('right', true);
             player.flipX = false;
+            //player.flipX(false);
         } else {
             player.setVelocityX(0);
             player.anims.play('stand', true);
@@ -179,5 +189,13 @@ document.addEventListener('deviceready', function () {
         if (cursors.up.isDown && player.body.touching.down) {
             player.setVelocityY(-330);
         }
+
+        bg.update(player.body.velocity.x, player.body.velocity.y);
+
+        // console.log("player.angle: " + player.angle);
+        // player.angle = player.angle + 1;
+
+
+        //console.log("player.body.position.x: " + player.body.position.x);
     }
 });

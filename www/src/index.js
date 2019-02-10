@@ -3,6 +3,9 @@ import preload from './mz/sanic/preloader';
 import Background from './mz/sanic/Background';
 import Player from './mz/sanic/Player';
 
+// set to either landscape
+screen.orientation.lock('portrait-primary');
+
 document.addEventListener('deviceready', function () {
     // create a new scene named "Game"
     let gameScene = new Phaser.Scene('Game');
@@ -162,8 +165,8 @@ document.addEventListener('deviceready', function () {
     }
 
     gameScene.update = function () {
-        //console.log({ touch: { x: this.input.pointer1.x, y: this.input.pointer1.y } })
         document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
+        //document.querySelector("#title").innerHTML = screen.orientation.type;
 
         if (gameOver) return;
 
