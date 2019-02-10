@@ -3,6 +3,7 @@ class Player {
 
 
     init(scene, x, y) {
+        this.scene = scene;
         this.player = scene.physics.add.sprite(x, y, 'sonic3', 'stand/sonic3_sprites_01.png');
 
         /* The function generateFrameNames() creates a whole bunch of frame names by creating zero-padded numbers between start and end, 
@@ -64,11 +65,41 @@ class Player {
     setVelocityY(value) { this.sprite.setVelocityY(value); }
 
     /**
+     * Rota el sprite del jugador
+     * @param {Number} degrees Grados horarios de rotacion.
+     */
+    rotate(degrees) { this.player.angle = this.player.angle + degrees; }
+
+    /**
      * Reproduce una animacion.
      * @param {String} anim Nombre de la animacion.
      * @param {Boolean} ignoreIfPlaying If an animation is already playing then ignore this call.
      */
     playAnim(anim, ignoreIfPlaying = true) { this.sprite.anims.play(anim, ignoreIfPlaying); }
+
+
+    /**
+     * Actualiza el estado del jugador a partir de los inputs del mundo real.
+     * @param {Object} inputStatus inputs del mundo real. 
+     */
+    update({ pressLeft, pressRight, jump }) {
+        if (pressLeft) {
+            this.setVelocityX(-160);
+            this.playAnim('left', true);
+            this.flipX = true;
+        } else if (pressRight) {
+            this.setVelocityX(160);
+            this.playAnim('right', true);
+            this.flipX = false;
+        } else {
+            this.setVelocityX(0);
+            this.playAnim('stand', true);
+        }
+
+        if (jump) {
+            this.setVelocityY(-330);
+        }
+    }
 }
 
 export default Player;

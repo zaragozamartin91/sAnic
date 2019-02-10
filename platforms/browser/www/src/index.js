@@ -10,8 +10,10 @@ document.addEventListener('deviceready', function () {
     // create a new scene named "Game"
     let gameScene = new Phaser.Scene('Game');
 
-    let worldWidth = Math.min(window.innerWidth, 1366);
-    let worldHeight = Math.min(window.innerHeight, 768);
+    const worldWidth = Math.min(window.innerWidth, 1366);
+    const half_worldWidth = worldWidth / 2;
+    const worldHeight = Math.min(window.innerHeight, 768);
+    const half_worldHeight = worldHeight / 2;
 
     let config = {
         type: Phaser.AUTO,
@@ -165,30 +167,18 @@ document.addEventListener('deviceready', function () {
     }
 
     gameScene.update = function () {
-        //document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
-        document.querySelector("#title").innerHTML = screen.orientation.type;
+        document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
+        //document.querySelector("#title").innerHTML = screen.orientation.type;
 
         if (gameOver) return;
 
-        if (cursors.left.isDown) {
-            player.setVelocityX(-160);
-            player.anims.play('left', true);
-            player.flipX = true;
-            //player.flipX(true);
-        } else if (cursors.right.isDown) {
-            player.setVelocityX(160);
-            player.anims.play('right', true);
-            player.flipX = false;
-            //player.flipX(false);
-        } else {
-            player.setVelocityX(0);
-            player.anims.play('stand', true);
-        }
+        const playerStatus = {
+            pressLeft: cursors.left.isDown || (this.input.pointer1.isDown && this.input.pointer1.x <= half_worldWidth),
+            pressRight: cursors.right.isDown || (this.input.pointer1.isDown && this.input.pointer1.x > half_worldWidth),
+            jump: player.body.touching.down && (cursors.up.isDown || (this.input.pointer1.isDown && this.input.pointer1.y < half_worldHeight))
+        };
 
-        // logica de salto
-        if (cursors.up.isDown && player.body.touching.down) {
-            player.setVelocityY(-330);
-        }
+        player.update(playerStatus);
 
         bg.update(player.body.velocity.x, player.body.velocity.y);
 
