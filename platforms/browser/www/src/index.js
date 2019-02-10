@@ -23,7 +23,7 @@ document.addEventListener('deviceready', function () {
         scene: gameScene,
         physics: {
             default: 'arcade',
-            arcade: { gravity: { y: 300 }, debug: false }
+            arcade: { gravity: { y: 300 }, debug: true }
         },
     };
 
@@ -175,9 +175,11 @@ document.addEventListener('deviceready', function () {
         const playerStatus = {
             pressLeft: cursors.left.isDown || (this.input.pointer1.isDown && this.input.pointer1.x <= half_worldWidth),
             pressRight: cursors.right.isDown || (this.input.pointer1.isDown && this.input.pointer1.x > half_worldWidth),
-            jump: player.body.touching.down && (cursors.up.isDown || (this.input.pointer1.isDown && this.input.pointer1.y < half_worldHeight))
+            jump: player.body.touching.down && (cursors.up.isDown || (this.input.pointer1.isDown && this.input.pointer1.y < half_worldHeight)),
+            standing: player.body.touching.down
         };
 
+        console.log(JSON.stringify(playerStatus));
         player.update(playerStatus);
 
         bg.update(player.body.velocity.x, player.body.velocity.y);

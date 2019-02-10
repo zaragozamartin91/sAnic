@@ -8,11 +8,17 @@ class Player {
 
         /* The function generateFrameNames() creates a whole bunch of frame names by creating zero-padded numbers between start and end, 
         surrounded by prefix and suffix). 1 is the start index, 13 the end index and the 2 is the number of digits to use */
+        // let standFrames = scene.anims.generateFrameNames('sonic3', {
+        //     start: 1, end: 13, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
+        // });
         let standFrames = scene.anims.generateFrameNames('sonic3', {
-            start: 1, end: 13, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
+            start: 1, end: 1, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
         });
         let walkFrames = scene.anims.generateFrameNames('sonic3', {
             start: 18, end: 25, zeroPad: 2, prefix: 'walk/sonic3_sprites_', suffix: '.png'
+        });
+        let jumpFrames = scene.anims.generateFrameNames('sonic3', {
+            start: 55, end: 55, zeroPad: 2, prefix: 'jump/sonic3_sprites_', suffix: '.png'
         });
 
         /* creamos la animacion del movimiento hacia la izquierda */
@@ -21,6 +27,8 @@ class Player {
         scene.anims.create({ key: 'stand', frames: standFrames, frameRate: 1, repeat: -1 });
         /* creamos la animacion del movimiento hacia la derecha */
         scene.anims.create({ key: 'right', frames: walkFrames, frameRate: 10, repeat: -1 });
+        /* creamos la animacion de salto */
+        scene.anims.create({ key: 'jump', frames: jumpFrames, frameRate: 1, repeat: -1 });
     }
 
     get sprite() { return this.player; }
@@ -82,22 +90,34 @@ class Player {
      * Actualiza el estado del jugador a partir de los inputs del mundo real.
      * @param {Object} inputStatus inputs del mundo real. 
      */
-    update({ pressLeft, pressRight, jump }) {
-        if (pressLeft) {
-            this.setVelocityX(-160);
-            this.playAnim('left', true);
-            this.flipX = true;
-        } else if (pressRight) {
-            this.setVelocityX(160);
-            this.playAnim('right', true);
-            this.flipX = false;
-        } else {
-            this.setVelocityX(0);
-            this.playAnim('stand', true);
-        }
-
+    update({ pressLeft, pressRight, jump, standing }) {
         if (jump) {
             this.setVelocityY(-330);
+            //this.playAnim('jump', true);
+            return;
+        }
+
+        if(standing) {
+            if(pressLeft) {
+                this.setVelocityX(-160);
+                this.playAnim('left', true);
+                this.flipX = true;
+                return;    
+            }
+
+            if(pressRight) {
+                this.setVelocityX(160);
+                this.playAnim('right', true);
+                this.flipX = false;
+                return;    
+            }
+
+            this.setVelocityX(0);
+            this.playAnim('stand', true);
+            return;
+        } else {
+            // jugador esta en el aire
+            //this.playAnim('jump', true);
         }
     }
 }

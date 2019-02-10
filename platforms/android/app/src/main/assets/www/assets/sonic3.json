@@ -4,1311 +4,51 @@
 			"image": "sonic3.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 128,
-				"h": 884
+				"w": 127,
+				"h": 899
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "walk_up/sonic3_sprites_47.png",
+					"filename": "rotate_diag_down/sonic3_sprites_96.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 42,
-						"h": 44
+						"w": 28,
+						"h": 24
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 42,
-						"h": 44
+						"w": 28,
+						"h": 24
 					},
 					"frame": {
 						"x": 1,
 						"y": 1,
-						"w": 42,
-						"h": 44
+						"w": 28,
+						"h": 24
 					}
 				},
 				{
-					"filename": "walk_up/sonic3_sprites_43.png",
+					"filename": "duck/sonic3_sprites_17.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 44,
-						"h": 40
+						"w": 27,
+						"h": 26
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 44,
-						"h": 40
+						"w": 27,
+						"h": 26
 					},
 					"frame": {
-						"x": 45,
+						"x": 31,
 						"y": 1,
-						"w": 44,
-						"h": 40
-					}
-				},
-				{
-					"filename": "run_up/sonic3_sprites_50.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 36,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 36,
-						"h": 40
-					},
-					"frame": {
-						"x": 91,
-						"y": 1,
-						"w": 36,
-						"h": 40
-					}
-				},
-				{
-					"filename": "walk_up/sonic3_sprites_46.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 39,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 39,
-						"h": 45
-					},
-					"frame": {
-						"x": 1,
-						"y": 47,
-						"w": 39,
-						"h": 45
-					}
-				},
-				{
-					"filename": "walk_up/sonic3_sprites_42.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 40,
-						"h": 43
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 40,
-						"h": 43
-					},
-					"frame": {
-						"x": 1,
-						"y": 94,
-						"w": 40,
-						"h": 43
-					}
-				},
-				{
-					"filename": "walk_up/sonic3_sprites_45.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 41,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 41,
-						"h": 40
-					},
-					"frame": {
-						"x": 1,
-						"y": 139,
-						"w": 41,
-						"h": 40
-					}
-				},
-				{
-					"filename": "walk/sonic3_sprites_18.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 39,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 39,
-						"h": 40
-					},
-					"frame": {
-						"x": 1,
-						"y": 181,
-						"w": 39,
-						"h": 40
-					}
-				},
-				{
-					"filename": "walk/sonic3_sprites_19.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 39,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 39,
-						"h": 38
-					},
-					"frame": {
-						"x": 1,
-						"y": 223,
-						"w": 39,
-						"h": 38
-					}
-				},
-				{
-					"filename": "walk/sonic3_sprites_22.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 37,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 37,
-						"h": 40
-					},
-					"frame": {
-						"x": 1,
-						"y": 263,
-						"w": 37,
-						"h": 40
-					}
-				},
-				{
-					"filename": "run_up/sonic3_sprites_52.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 35,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 35,
-						"h": 40
-					},
-					"frame": {
-						"x": 1,
-						"y": 305,
-						"w": 35,
-						"h": 40
-					}
-				},
-				{
-					"filename": "look_up/sonic3_sprites_15.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 35,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 35,
-						"h": 38
-					},
-					"frame": {
-						"x": 1,
-						"y": 347,
-						"w": 35,
-						"h": 38
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_09.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 36,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 36,
-						"h": 38
-					},
-					"frame": {
-						"x": 1,
-						"y": 387,
-						"w": 36,
-						"h": 38
-					}
-				},
-				{
-					"filename": "walk/sonic3_sprites_23.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 38,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 38,
-						"h": 38
-					},
-					"frame": {
-						"x": 1,
-						"y": 427,
-						"w": 38,
-						"h": 38
-					}
-				},
-				{
-					"filename": "walk_up/sonic3_sprites_44.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 38,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 38,
-						"h": 38
-					},
-					"frame": {
-						"x": 1,
-						"y": 467,
-						"w": 38,
-						"h": 38
-					}
-				},
-				{
-					"filename": "walk_up/sonic3_sprites_48.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 37,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 37,
-						"h": 38
-					},
-					"frame": {
-						"x": 1,
-						"y": 507,
-						"w": 37,
-						"h": 38
-					}
-				},
-				{
-					"filename": "look_up/sonic3_sprites_14.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 40
-					},
-					"frame": {
-						"x": 1,
-						"y": 547,
-						"w": 32,
-						"h": 40
-					}
-				},
-				{
-					"filename": "run_up/sonic3_sprites_51.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 40
-					},
-					"frame": {
-						"x": 1,
-						"y": 589,
-						"w": 32,
-						"h": 40
-					}
-				},
-				{
-					"filename": "run_up/sonic3_sprites_53.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 40
-					},
-					"frame": {
-						"x": 1,
-						"y": 631,
-						"w": 32,
-						"h": 40
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_03.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 39
-					},
-					"frame": {
-						"x": 1,
-						"y": 673,
-						"w": 32,
-						"h": 39
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_04.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 39
-					},
-					"frame": {
-						"x": 1,
-						"y": 714,
-						"w": 32,
-						"h": 39
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_05.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 39
-					},
-					"frame": {
-						"x": 1,
-						"y": 755,
-						"w": 32,
-						"h": 39
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_06.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 39
-					},
-					"frame": {
-						"x": 1,
-						"y": 796,
-						"w": 32,
-						"h": 39
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_07.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 39
-					},
-					"frame": {
-						"x": 1,
-						"y": 837,
-						"w": 32,
-						"h": 39
-					}
-				},
-				{
-					"filename": "ascend/sonic3_sprites_65.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 45
-					},
-					"frame": {
-						"x": 35,
-						"y": 547,
-						"w": 24,
-						"h": 45
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_88.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 43
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 43
-					},
-					"frame": {
-						"x": 35,
-						"y": 594,
-						"w": 24,
-						"h": 43
-					}
-				},
-				{
-					"filename": "gesture/sonic3_sprites_66.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 29,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 29,
-						"h": 40
-					},
-					"frame": {
-						"x": 35,
-						"y": 639,
-						"w": 29,
-						"h": 40
-					}
-				},
-				{
-					"filename": "gesture/sonic3_sprites_67.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 40
-					},
-					"frame": {
-						"x": 35,
-						"y": 681,
-						"w": 30,
-						"h": 40
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_100.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 40
-					},
-					"frame": {
-						"x": 35,
-						"y": 723,
-						"w": 30,
-						"h": 40
-					}
-				},
-				{
-					"filename": "rotate/sonic3_sprites_85.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 39
-					},
-					"frame": {
-						"x": 35,
-						"y": 765,
-						"w": 30,
-						"h": 39
-					}
-				},
-				{
-					"filename": "rotate_diag_up/sonic3_sprites_75.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 31,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 31,
-						"h": 39
-					},
-					"frame": {
-						"x": 35,
-						"y": 806,
-						"w": 31,
-						"h": 39
-					}
-				},
-				{
-					"filename": "run/sonic3_sprites_26.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 36
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 36
-					},
-					"frame": {
-						"x": 35,
-						"y": 847,
-						"w": 32,
-						"h": 36
-					}
-				},
-				{
-					"filename": "gesture/sonic3_sprites_68.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 26,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 26,
-						"h": 38
-					},
-					"frame": {
-						"x": 40,
-						"y": 507,
-						"w": 26,
-						"h": 38
-					}
-				},
-				{
-					"filename": "rotate/sonic3_sprites_82.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 26,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 26,
-						"h": 40
-					},
-					"frame": {
-						"x": 61,
-						"y": 547,
-						"w": 26,
-						"h": 40
-					}
-				},
-				{
-					"filename": "rotate_diag_up/sonic3_sprites_74.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
 						"w": 27,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 27,
-						"h": 40
-					},
-					"frame": {
-						"x": 61,
-						"y": 589,
-						"w": 27,
-						"h": 40
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_13.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 27,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 27,
-						"h": 40
-					},
-					"frame": {
-						"x": 66,
-						"y": 631,
-						"w": 27,
-						"h": 40
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_10.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 39
-					},
-					"frame": {
-						"x": 95,
-						"y": 43,
-						"w": 32,
-						"h": 39
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_11.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 39
-					},
-					"frame": {
-						"x": 95,
-						"y": 84,
-						"w": 32,
-						"h": 39
-					}
-				},
-				{
-					"filename": "run/sonic3_sprites_27.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 36
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 36
-					},
-					"frame": {
-						"x": 95,
-						"y": 125,
-						"w": 32,
-						"h": 36
-					}
-				},
-				{
-					"filename": "run/sonic3_sprites_29.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 36
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 36
-					},
-					"frame": {
-						"x": 95,
-						"y": 163,
-						"w": 32,
-						"h": 36
-					}
-				},
-				{
-					"filename": "walk/sonic3_sprites_21.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 28,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 28,
-						"h": 40
-					},
-					"frame": {
-						"x": 67,
-						"y": 673,
-						"w": 28,
-						"h": 40
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_02.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 39
-					},
-					"frame": {
-						"x": 97,
-						"y": 201,
-						"w": 30,
-						"h": 39
-					}
-				},
-				{
-					"filename": "rotate/sonic3_sprites_84.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 28,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 28,
-						"h": 39
-					},
-					"frame": {
-						"x": 67,
-						"y": 715,
-						"w": 28,
-						"h": 39
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_93.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 29,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 29,
-						"h": 39
-					},
-					"frame": {
-						"x": 67,
-						"y": 756,
-						"w": 29,
-						"h": 39
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_01.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 29,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 29,
-						"h": 39
-					},
-					"frame": {
-						"x": 98,
-						"y": 242,
-						"w": 29,
-						"h": 39
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_99.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 29,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 29,
-						"h": 39
-					},
-					"frame": {
-						"x": 98,
-						"y": 242,
-						"w": 29,
-						"h": 39
-					}
-				},
-				{
-					"filename": "jump/sonic3_sprites_54.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 30
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 30
-					},
-					"frame": {
-						"x": 97,
-						"y": 283,
-						"w": 30,
-						"h": 30
-					}
-				},
-				{
-					"filename": "jump/sonic3_sprites_55.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 30
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 30
-					},
-					"frame": {
-						"x": 97,
-						"y": 315,
-						"w": 30,
-						"h": 30
-					}
-				},
-				{
-					"filename": "jump/sonic3_sprites_56.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 30
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 30
-					},
-					"frame": {
-						"x": 97,
-						"y": 347,
-						"w": 30,
-						"h": 30
-					}
-				},
-				{
-					"filename": "jump/sonic3_sprites_57.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 30
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 30
-					},
-					"frame": {
-						"x": 97,
-						"y": 379,
-						"w": 30,
-						"h": 30
-					}
-				},
-				{
-					"filename": "jump/sonic3_sprites_58.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 30,
-						"h": 30
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 30,
-						"h": 30
-					},
-					"frame": {
-						"x": 97,
-						"y": 411,
-						"w": 30,
-						"h": 30
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_91.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 29,
-						"h": 29
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 29,
-						"h": 29
-					},
-					"frame": {
-						"x": 98,
-						"y": 443,
-						"w": 29,
-						"h": 29
-					}
-				},
-				{
-					"filename": "rotate_diag_up/sonic3_sprites_69.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 28,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 28,
-						"h": 39
-					},
-					"frame": {
-						"x": 68,
-						"y": 797,
-						"w": 28,
-						"h": 39
-					}
-				},
-				{
-					"filename": "rotate/sonic3_sprites_83.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 27,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 27,
-						"h": 39
-					},
-					"frame": {
-						"x": 69,
-						"y": 838,
-						"w": 27,
-						"h": 39
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_90.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 28,
-						"h": 31
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 28,
-						"h": 31
-					},
-					"frame": {
-						"x": 41,
-						"y": 474,
-						"w": 28,
-						"h": 31
-					}
-				},
-				{
-					"filename": "rotate/sonic3_sprites_81.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 39
-					},
-					"frame": {
-						"x": 71,
-						"y": 43,
-						"w": 22,
-						"h": 39
-					}
-				},
-				{
-					"filename": "rotate/sonic3_sprites_86.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 27,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 27,
-						"h": 39
-					},
-					"frame": {
-						"x": 42,
-						"y": 47,
-						"w": 27,
-						"h": 39
-					}
-				},
-				{
-					"filename": "rotate/sonic3_sprites_87.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 39
-					},
-					"frame": {
-						"x": 71,
-						"y": 84,
-						"w": 22,
-						"h": 39
-					}
-				},
-				{
-					"filename": "walk/sonic3_sprites_25.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 26,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 26,
-						"h": 40
-					},
-					"frame": {
-						"x": 43,
-						"y": 88,
-						"w": 26,
-						"h": 40
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_94.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 38
-					},
-					"frame": {
-						"x": 71,
-						"y": 125,
-						"w": 22,
-						"h": 38
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_08.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 33,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 33,
-						"h": 38
-					},
-					"frame": {
-						"x": 68,
-						"y": 507,
-						"w": 33,
-						"h": 38
-					}
-				},
-				{
-					"filename": "rotate_diag_up/sonic3_sprites_79.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 37
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 37
-					},
-					"frame": {
-						"x": 103,
-						"y": 474,
-						"w": 24,
-						"h": 37
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_98.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 36
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 36
-					},
-					"frame": {
-						"x": 103,
-						"y": 513,
-						"w": 24,
-						"h": 36
+						"h": 26
 					}
 				},
 				{
@@ -1326,241 +66,10 @@
 						"h": 27
 					},
 					"frame": {
-						"x": 71,
-						"y": 474,
+						"x": 60,
+						"y": 1,
 						"w": 30,
 						"h": 27
-					}
-				},
-				{
-					"filename": "rotate_diag_up/sonic3_sprites_71.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 26,
-						"h": 29
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 26,
-						"h": 29
-					},
-					"frame": {
-						"x": 41,
-						"y": 443,
-						"w": 26,
-						"h": 29
-					}
-				},
-				{
-					"filename": "duck/sonic3_sprites_16.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 34
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 34
-					},
-					"frame": {
-						"x": 69,
-						"y": 165,
-						"w": 24,
-						"h": 34
-					}
-				},
-				{
-					"filename": "walk/sonic3_sprites_20.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 26,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 26,
-						"h": 38
-					},
-					"frame": {
-						"x": 69,
-						"y": 201,
-						"w": 26,
-						"h": 38
-					}
-				},
-				{
-					"filename": "rotate_diag_up/sonic3_sprites_80.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 23,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 23,
-						"h": 39
-					},
-					"frame": {
-						"x": 44,
-						"y": 130,
-						"w": 23,
-						"h": 39
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_89.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 23,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 23,
-						"h": 32
-					},
-					"frame": {
-						"x": 44,
-						"y": 171,
-						"w": 23,
-						"h": 32
-					}
-				},
-				{
-					"filename": "rotate_diag_up/sonic3_sprites_76.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 22,
-						"h": 35
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 22,
-						"h": 35
-					},
-					"frame": {
-						"x": 42,
-						"y": 205,
-						"w": 22,
-						"h": 35
-					}
-				},
-				{
-					"filename": "run/sonic3_sprites_28.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 31,
-						"h": 36
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 31,
-						"h": 36
-					},
-					"frame": {
-						"x": 89,
-						"y": 551,
-						"w": 31,
-						"h": 36
-					}
-				},
-				{
-					"filename": "stand/sonic3_sprites_12.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 27,
-						"h": 39
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 27,
-						"h": 39
-					},
-					"frame": {
-						"x": 90,
-						"y": 589,
-						"w": 27,
-						"h": 39
-					}
-				},
-				{
-					"filename": "walk/sonic3_sprites_24.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 26,
-						"h": 38
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 26,
-						"h": 38
-					},
-					"frame": {
-						"x": 95,
-						"y": 630,
-						"w": 26,
-						"h": 38
-					}
-				},
-				{
-					"filename": "rotate_diag_up/sonic3_sprites_70.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 27,
-						"h": 35
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 27,
-						"h": 35
-					},
-					"frame": {
-						"x": 97,
-						"y": 670,
-						"w": 27,
-						"h": 35
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_92.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 28,
-						"h": 33
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 28,
-						"h": 33
-					},
-					"frame": {
-						"x": 97,
-						"y": 707,
-						"w": 28,
-						"h": 33
 					}
 				},
 				{
@@ -1578,10 +87,31 @@
 						"h": 27
 					},
 					"frame": {
-						"x": 98,
-						"y": 742,
+						"x": 92,
+						"y": 1,
 						"w": 29,
 						"h": 27
+					}
+				},
+				{
+					"filename": "rotate_diag_down/sonic3_sprites_97.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 28
+					},
+					"frame": {
+						"x": 1,
+						"y": 27,
+						"w": 24,
+						"h": 28
 					}
 				},
 				{
@@ -1599,8 +129,8 @@
 						"h": 27
 					},
 					"frame": {
-						"x": 98,
-						"y": 771,
+						"x": 27,
+						"y": 29,
 						"w": 29,
 						"h": 27
 					}
@@ -1620,8 +150,8 @@
 						"h": 27
 					},
 					"frame": {
-						"x": 98,
-						"y": 800,
+						"x": 58,
+						"y": 30,
 						"w": 29,
 						"h": 27
 					}
@@ -1641,52 +171,178 @@
 						"h": 27
 					},
 					"frame": {
-						"x": 98,
-						"y": 829,
+						"x": 89,
+						"y": 30,
 						"w": 29,
 						"h": 27
 					}
 				},
 				{
-					"filename": "duck/sonic3_sprites_17.png",
+					"filename": "spin_dash/sonic3_sprites_64.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 27,
-						"h": 26
+						"w": 29,
+						"h": 27
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 27,
-						"h": 26
+						"w": 29,
+						"h": 27
 					},
 					"frame": {
-						"x": 69,
-						"y": 443,
-						"w": 27,
-						"h": 26
+						"x": 1,
+						"y": 58,
+						"w": 29,
+						"h": 27
 					}
 				},
 				{
-					"filename": "rotate_diag_down/sonic3_sprites_96.png",
+					"filename": "rotate_diag_down/sonic3_sprites_91.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 59,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "rotate_diag_up/sonic3_sprites_71.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 26,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 26,
+						"h": 29
+					},
+					"frame": {
+						"x": 63,
+						"y": 59,
+						"w": 26,
+						"h": 29
+					}
+				},
+				{
+					"filename": "jump/sonic3_sprites_54.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 30
+					},
+					"frame": {
+						"x": 91,
+						"y": 59,
+						"w": 30,
+						"h": 30
+					}
+				},
+				{
+					"filename": "rotate_diag_down/sonic3_sprites_90.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 28,
-						"h": 24
+						"h": 31
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 28,
-						"h": 24
+						"h": 31
 					},
 					"frame": {
-						"x": 98,
-						"y": 858,
+						"x": 1,
+						"y": 87,
 						"w": 28,
-						"h": 24
+						"h": 31
+					}
+				},
+				{
+					"filename": "jump/sonic3_sprites_55.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 30
+					},
+					"frame": {
+						"x": 31,
+						"y": 90,
+						"w": 30,
+						"h": 30
+					}
+				},
+				{
+					"filename": "jump/sonic3_sprites_56.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 30
+					},
+					"frame": {
+						"x": 63,
+						"y": 91,
+						"w": 30,
+						"h": 30
+					}
+				},
+				{
+					"filename": "jump/sonic3_sprites_57.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 30
+					},
+					"frame": {
+						"x": 95,
+						"y": 91,
+						"w": 30,
+						"h": 30
 					}
 				},
 				{
@@ -1704,10 +360,52 @@
 						"h": 31
 					},
 					"frame": {
-						"x": 42,
-						"y": 242,
+						"x": 1,
+						"y": 120,
 						"w": 24,
 						"h": 31
+					}
+				},
+				{
+					"filename": "jump/sonic3_sprites_58.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 30
+					},
+					"frame": {
+						"x": 27,
+						"y": 122,
+						"w": 30,
+						"h": 30
+					}
+				},
+				{
+					"filename": "rotate_diag_down/sonic3_sprites_89.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 23,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 23,
+						"h": 32
+					},
+					"frame": {
+						"x": 59,
+						"y": 123,
+						"w": 23,
+						"h": 32
 					}
 				},
 				{
@@ -1725,8 +423,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 68,
-						"y": 242,
+						"x": 84,
+						"y": 123,
 						"w": 28,
 						"h": 32
 					}
@@ -1746,31 +444,10 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 40,
-						"y": 275,
+						"x": 1,
+						"y": 154,
 						"w": 26,
 						"h": 32
-					}
-				},
-				{
-					"filename": "walk_up/sonic3_sprites_49.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 40,
-						"h": 35
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 40,
-						"h": 35
-					},
-					"frame": {
-						"x": 38,
-						"y": 309,
-						"w": 40,
-						"h": 35
 					}
 				},
 				{
@@ -1788,31 +465,10 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 38,
-						"y": 346,
+						"x": 29,
+						"y": 154,
 						"w": 28,
 						"h": 32
-					}
-				},
-				{
-					"filename": "rotate_diag_down/sonic3_sprites_97.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 28
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 28
-					},
-					"frame": {
-						"x": 68,
-						"y": 276,
-						"w": 24,
-						"h": 28
 					}
 				},
 				{
@@ -1830,31 +486,1375 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 39,
-						"y": 380,
+						"x": 59,
+						"y": 157,
 						"w": 28,
 						"h": 32
 					}
 				},
 				{
-					"filename": "spin_dash/sonic3_sprites_64.png",
+					"filename": "rotate_diag_down/sonic3_sprites_92.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 33
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 33
+					},
+					"frame": {
+						"x": 89,
+						"y": 157,
+						"w": 28,
+						"h": 33
+					}
+				},
+				{
+					"filename": "duck/sonic3_sprites_16.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 34
+					},
+					"frame": {
+						"x": 1,
+						"y": 188,
+						"w": 24,
+						"h": 34
+					}
+				},
+				{
+					"filename": "rotate_diag_up/sonic3_sprites_70.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 27,
+						"h": 35
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 27,
+						"h": 35
+					},
+					"frame": {
+						"x": 27,
+						"y": 188,
+						"w": 27,
+						"h": 35
+					}
+				},
+				{
+					"filename": "rotate_diag_up/sonic3_sprites_76.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 35
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 35
+					},
+					"frame": {
+						"x": 56,
+						"y": 191,
+						"w": 22,
+						"h": 35
+					}
+				},
+				{
+					"filename": "walk_up/sonic3_sprites_49.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 40,
+						"h": 35
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 40,
+						"h": 35
+					},
+					"frame": {
+						"x": 80,
+						"y": 192,
+						"w": 40,
+						"h": 35
+					}
+				},
+				{
+					"filename": "rotate_diag_down/sonic3_sprites_98.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 36
+					},
+					"frame": {
+						"x": 1,
+						"y": 224,
+						"w": 24,
+						"h": 36
+					}
+				},
+				{
+					"filename": "rotate_diag_up/sonic3_sprites_79.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 37
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 37
+					},
+					"frame": {
+						"x": 27,
+						"y": 225,
+						"w": 24,
+						"h": 37
+					}
+				},
+				{
+					"filename": "run/sonic3_sprites_26.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 36
+					},
+					"frame": {
+						"x": 53,
+						"y": 229,
+						"w": 32,
+						"h": 36
+					}
+				},
+				{
+					"filename": "run/sonic3_sprites_27.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 36
+					},
+					"frame": {
+						"x": 87,
+						"y": 229,
+						"w": 32,
+						"h": 36
+					}
+				},
+				{
+					"filename": "rotate_diag_down/sonic3_sprites_94.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 38
+					},
+					"frame": {
+						"x": 1,
+						"y": 262,
+						"w": 22,
+						"h": 38
+					}
+				},
+				{
+					"filename": "gesture/sonic3_sprites_68.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 26,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 26,
+						"h": 38
+					},
+					"frame": {
+						"x": 25,
+						"y": 264,
+						"w": 26,
+						"h": 38
+					}
+				},
+				{
+					"filename": "run/sonic3_sprites_28.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 31,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 31,
+						"h": 36
+					},
+					"frame": {
+						"x": 53,
+						"y": 267,
+						"w": 31,
+						"h": 36
+					}
+				},
+				{
+					"filename": "run/sonic3_sprites_29.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 36
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 36
+					},
+					"frame": {
+						"x": 86,
+						"y": 267,
+						"w": 32,
+						"h": 36
+					}
+				},
+				{
+					"filename": "rotate/sonic3_sprites_81.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 39
+					},
+					"frame": {
+						"x": 1,
+						"y": 302,
+						"w": 22,
+						"h": 39
+					}
+				},
+				{
+					"filename": "look_up/sonic3_sprites_15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 35,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 35,
+						"h": 38
+					},
+					"frame": {
+						"x": 25,
+						"y": 305,
+						"w": 35,
+						"h": 38
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_08.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 33,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 33,
+						"h": 38
+					},
+					"frame": {
+						"x": 62,
+						"y": 305,
+						"w": 33,
+						"h": 38
+					}
+				},
+				{
+					"filename": "rotate/sonic3_sprites_83.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 27,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 27,
+						"h": 39
+					},
+					"frame": {
+						"x": 97,
+						"y": 305,
+						"w": 27,
+						"h": 39
+					}
+				},
+				{
+					"filename": "rotate/sonic3_sprites_87.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 39
+					},
+					"frame": {
+						"x": 1,
+						"y": 343,
+						"w": 22,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_09.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 36,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 36,
+						"h": 38
+					},
+					"frame": {
+						"x": 25,
+						"y": 345,
+						"w": 36,
+						"h": 38
+					}
+				},
+				{
+					"filename": "rotate/sonic3_sprites_84.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 39
+					},
+					"frame": {
+						"x": 63,
+						"y": 345,
+						"w": 28,
+						"h": 39
+					}
+				},
+				{
+					"filename": "rotate/sonic3_sprites_85.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 39
+					},
+					"frame": {
+						"x": 93,
+						"y": 346,
+						"w": 30,
+						"h": 39
+					}
+				},
+				{
+					"filename": "walk_up/sonic3_sprites_44.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 38,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 38,
+						"h": 38
+					},
+					"frame": {
+						"x": 1,
+						"y": 385,
+						"w": 38,
+						"h": 38
+					}
+				},
+				{
+					"filename": "walk_up/sonic3_sprites_48.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 37,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 37,
+						"h": 38
+					},
+					"frame": {
+						"x": 41,
+						"y": 386,
+						"w": 37,
+						"h": 38
+					}
+				},
+				{
+					"filename": "rotate/sonic3_sprites_86.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 27,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 27,
+						"h": 39
+					},
+					"frame": {
+						"x": 80,
+						"y": 387,
+						"w": 27,
+						"h": 39
+					}
+				},
+				{
+					"filename": "rotate_diag_down/sonic3_sprites_93.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 29,
-						"h": 27
+						"h": 39
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 29,
-						"h": 27
+						"h": 39
 					},
 					"frame": {
-						"x": 41,
-						"y": 414,
+						"x": 1,
+						"y": 425,
 						"w": 29,
-						"h": 27
+						"h": 39
+					}
+				},
+				{
+					"filename": "rotate_diag_up/sonic3_sprites_69.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 39
+					},
+					"frame": {
+						"x": 32,
+						"y": 426,
+						"w": 28,
+						"h": 39
+					}
+				},
+				{
+					"filename": "rotate_diag_up/sonic3_sprites_75.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 31,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 31,
+						"h": 39
+					},
+					"frame": {
+						"x": 62,
+						"y": 428,
+						"w": 31,
+						"h": 39
+					}
+				},
+				{
+					"filename": "rotate_diag_up/sonic3_sprites_80.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 23,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 23,
+						"h": 39
+					},
+					"frame": {
+						"x": 95,
+						"y": 428,
+						"w": 23,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_01.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 39
+					},
+					"frame": {
+						"x": 1,
+						"y": 466,
+						"w": 29,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_99.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 39
+					},
+					"frame": {
+						"x": 1,
+						"y": 466,
+						"w": 29,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 27,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 27,
+						"h": 39
+					},
+					"frame": {
+						"x": 32,
+						"y": 467,
+						"w": 27,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_02.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 39
+					},
+					"frame": {
+						"x": 61,
+						"y": 469,
+						"w": 30,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_03.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 39
+					},
+					"frame": {
+						"x": 93,
+						"y": 469,
+						"w": 32,
+						"h": 39
+					}
+				},
+				{
+					"filename": "gesture/sonic3_sprites_66.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 40
+					},
+					"frame": {
+						"x": 1,
+						"y": 507,
+						"w": 29,
+						"h": 40
+					}
+				},
+				{
+					"filename": "rotate/sonic3_sprites_82.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 26,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 26,
+						"h": 40
+					},
+					"frame": {
+						"x": 32,
+						"y": 508,
+						"w": 26,
+						"h": 40
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_04.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 39
+					},
+					"frame": {
+						"x": 60,
+						"y": 510,
+						"w": 32,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_05.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 39
+					},
+					"frame": {
+						"x": 94,
+						"y": 510,
+						"w": 32,
+						"h": 39
+					}
+				},
+				{
+					"filename": "rotate_diag_up/sonic3_sprites_74.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 27,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 27,
+						"h": 40
+					},
+					"frame": {
+						"x": 1,
+						"y": 549,
+						"w": 27,
+						"h": 40
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_06.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 39
+					},
+					"frame": {
+						"x": 30,
+						"y": 551,
+						"w": 32,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_07.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 39
+					},
+					"frame": {
+						"x": 64,
+						"y": 551,
+						"w": 32,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 27,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 27,
+						"h": 40
+					},
+					"frame": {
+						"x": 98,
+						"y": 551,
+						"w": 27,
+						"h": 40
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 39
+					},
+					"frame": {
+						"x": 1,
+						"y": 592,
+						"w": 32,
+						"h": 39
+					}
+				},
+				{
+					"filename": "stand/sonic3_sprites_11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 39
+					},
+					"frame": {
+						"x": 35,
+						"y": 592,
+						"w": 32,
+						"h": 39
+					}
+				},
+				{
+					"filename": "walk/sonic3_sprites_20.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 27,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 27,
+						"h": 40
+					},
+					"frame": {
+						"x": 69,
+						"y": 592,
+						"w": 27,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk/sonic3_sprites_21.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 40
+					},
+					"frame": {
+						"x": 98,
+						"y": 593,
+						"w": 28,
+						"h": 40
+					}
+				},
+				{
+					"filename": "gesture/sonic3_sprites_67.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 40
+					},
+					"frame": {
+						"x": 1,
+						"y": 633,
+						"w": 30,
+						"h": 40
+					}
+				},
+				{
+					"filename": "look_up/sonic3_sprites_14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 40
+					},
+					"frame": {
+						"x": 33,
+						"y": 633,
+						"w": 32,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk/sonic3_sprites_24.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 27,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 27,
+						"h": 40
+					},
+					"frame": {
+						"x": 67,
+						"y": 634,
+						"w": 27,
+						"h": 40
+					}
+				},
+				{
+					"filename": "rotate_diag_down/sonic3_sprites_100.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 40
+					},
+					"frame": {
+						"x": 96,
+						"y": 635,
+						"w": 30,
+						"h": 40
+					}
+				},
+				{
+					"filename": "run_up/sonic3_sprites_50.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 36,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 36,
+						"h": 40
+					},
+					"frame": {
+						"x": 1,
+						"y": 675,
+						"w": 36,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk/sonic3_sprites_25.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 26,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 26,
+						"h": 40
+					},
+					"frame": {
+						"x": 39,
+						"y": 675,
+						"w": 26,
+						"h": 40
+					}
+				},
+				{
+					"filename": "run_up/sonic3_sprites_51.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 40
+					},
+					"frame": {
+						"x": 67,
+						"y": 677,
+						"w": 32,
+						"h": 40
+					}
+				},
+				{
+					"filename": "rotate_diag_down/sonic3_sprites_88.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 43
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 43
+					},
+					"frame": {
+						"x": 101,
+						"y": 677,
+						"w": 24,
+						"h": 43
+					}
+				},
+				{
+					"filename": "run_up/sonic3_sprites_52.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 35,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 35,
+						"h": 40
+					},
+					"frame": {
+						"x": 1,
+						"y": 717,
+						"w": 35,
+						"h": 40
+					}
+				},
+				{
+					"filename": "run_up/sonic3_sprites_53.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 40
+					},
+					"frame": {
+						"x": 38,
+						"y": 719,
+						"w": 32,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk/sonic3_sprites_18.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 39,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 39,
+						"h": 40
+					},
+					"frame": {
+						"x": 72,
+						"y": 722,
+						"w": 39,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk/sonic3_sprites_19.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 41,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 41,
+						"h": 40
+					},
+					"frame": {
+						"x": 1,
+						"y": 761,
+						"w": 41,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk/sonic3_sprites_22.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 37,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 37,
+						"h": 40
+					},
+					"frame": {
+						"x": 44,
+						"y": 764,
+						"w": 37,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk/sonic3_sprites_23.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 40,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 40,
+						"h": 40
+					},
+					"frame": {
+						"x": 83,
+						"y": 764,
+						"w": 40,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk_up/sonic3_sprites_45.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 41,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 41,
+						"h": 40
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 41,
+						"h": 40
+					}
+				},
+				{
+					"filename": "walk_up/sonic3_sprites_43.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 44,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 44,
+						"h": 40
+					},
+					"frame": {
+						"x": 44,
+						"y": 806,
+						"w": 44,
+						"h": 40
+					}
+				},
+				{
+					"filename": "ascend/sonic3_sprites_65.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 45
+					},
+					"frame": {
+						"x": 90,
+						"y": 806,
+						"w": 24,
+						"h": 45
+					}
+				},
+				{
+					"filename": "walk_up/sonic3_sprites_42.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 40,
+						"h": 43
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 40,
+						"h": 43
+					},
+					"frame": {
+						"x": 1,
+						"y": 845,
+						"w": 40,
+						"h": 43
+					}
+				},
+				{
+					"filename": "walk_up/sonic3_sprites_47.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 42,
+						"h": 44
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 42,
+						"h": 44
+					},
+					"frame": {
+						"x": 43,
+						"y": 848,
+						"w": 42,
+						"h": 44
+					}
+				},
+				{
+					"filename": "walk_up/sonic3_sprites_46.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 39,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 39,
+						"h": 45
+					},
+					"frame": {
+						"x": 87,
+						"y": 853,
+						"w": 39,
+						"h": 45
 					}
 				}
 			]
@@ -1863,6 +1863,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:3fed5c4f6d1cab325df04cd4fb3f63c9:d216ea934e95dd653e681efaa3d25aad:f07c17664e12354bfa03964c8a0f4483$"
+		"smartupdate": "$TexturePacker:SmartUpdate:05e8d73b5bcd1c15886057a551a8d96d:cf32f0d1ed8e945a6f22ce04b4808fc1:f07c17664e12354bfa03964c8a0f4483$"
 	}
 }
