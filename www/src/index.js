@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import preload from './mz/sanic/preloader';
+import Background from './mz/sanic/Background'
 
 document.addEventListener('deviceready', function () {
     // create a new scene named "Game"
@@ -21,8 +22,6 @@ document.addEventListener('deviceready', function () {
     };
 
     let game = new Phaser.Game(config);
-
-    let background = null;
 
     let player; // objeto del heroe
     let cursors; // manejador de teclado
@@ -67,9 +66,7 @@ document.addEventListener('deviceready', function () {
         //background = this.add.tileSprite(0, 0, 400, 300, 'sky');
         //this.add.image(400, 300, 'sky');
         //bg = this.add.tileSprite(100, 450, 800, 800,  'background');
-        bg = this.add.tileSprite(worldWidth / 2, worldHeight / 2, 800, 800, 'background');
-        bg.scrollFactorX = 0;
-        bg.scrollFactorY = 0;
+        bg = new Background(this, worldWidth / 2, worldHeight / 2, 800, 800);
 
         /* creo un grupo de cuerpos estaticos con iguales propiedades */
         /* this.physics refiere al objeto physics declarado en la configuracion */
@@ -206,8 +203,12 @@ document.addEventListener('deviceready', function () {
             player.setVelocityY(-330);
         }
 
-        bg.tilePositionX += player.body.velocity.x * 0.01 //change this to a value suited for your needs change - to + to change direction
-        bg.tilePositionY += player.body.velocity.y * 0.01 //change this to a value suited for your needs change - to + to change direction
-        console.log("bg.tilePositionX: " + bg.tilePositionX);
+        bg.update(player.body.velocity.x , player.body.velocity.y);
+
+        // console.log("player.angle: " + player.angle);
+        // player.angle = player.angle + 1;
+
+    
+        console.log("player.body.position.x: " + player.body.position.x);
     }
 });
