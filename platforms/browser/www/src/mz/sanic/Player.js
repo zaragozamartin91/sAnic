@@ -1,3 +1,11 @@
+const MAX_SPEED_X = 200;
+const MAX_SPEED_Y = 2000;
+
+const ACCEL = MAX_SPEED_X * 3 / 4;
+const HALF_ACCEL = ACCEL / 2;
+const DOUBLE_ACCEL = ACCEL * 2;
+const TRIPLE_ACCEL = ACCEL * 3;
+
 
 class Player {
 
@@ -29,6 +37,9 @@ class Player {
         scene.anims.create({ key: 'right', frames: walkFrames, frameRate: 10, repeat: -1 });
         /* creamos la animacion de salto */
         scene.anims.create({ key: 'jump', frames: jumpFrames, frameRate: 1, repeat: -1 });
+
+        /* Seteo la velocidad maxima del sprite en el eje x e y */
+        this.player.setMaxVelocity(MAX_SPEED_X, MAX_SPEED_Y);
     }
 
     get sprite() { return this.player; }
@@ -73,6 +84,18 @@ class Player {
     setVelocityY(value) { this.sprite.setVelocityY(value); }
 
     /**
+     * Establece la aceleracion Horizontal
+     * @param {Number} value Valor de aceleracion. 
+     */
+    setAccelerationX(value) { this.sprite.setAccelerationX(value); }
+
+    /**
+     * Establece la aceleracion Vertical
+     * @param {Number} value Valor de aceleracion. 
+     */
+    setAccelerationY(value) { this.sprite.setAccelerationY(value); }
+
+    /**
      * Rota el sprite del jugador
      * @param {Number} degrees Grados horarios de rotacion.
      */
@@ -87,42 +110,55 @@ class Player {
      */
     playAnim(anim, ignoreIfPlaying = true) { this.sprite.anims.play(anim, ignoreIfPlaying); }
 
+    goingLeft() { return this.velocity.x < 0; }
+
+    goingRight() { return !this.goingLeft(); }
 
     /**
      * Actualiza el estado del jugador a partir de los inputs del mundo real.
      * @param {Object} inputStatus inputs del mundo real. 
      */
     update({ pressLeft, pressRight, jump, standing }) {
+        console.log("Vel X: ", this.velocity.x);
+
         if (jump) {
             this.setVelocityY(-330);
             this.playAnim('jump', true);
             return;
         }
 
-        if(standing) {
+        if (standing) {
             this.resetRotation();
 
-            if(pressLeft) {
-                this.setVelocityX(-160);
+            if (pressLeft) {
+                this.setAccelerationX(this.goingRight() ? -TRIPLE_ACCEL : -ACCEL);
                 this.playAnim('left', true);
                 this.flipX = true;
-                return;    
+                return;
             }
 
-            if(pressRight) {
-                this.setVelocityX(160);
+            if (pressRight) {
+                this.setAccelerationX(this.goingLeft() ? TRIPLE_ACCEL : ACCEL);
                 this.playAnim('right', true);
                 this.flipX = false;
-                return;    
+                return;
             }
 
-            this.setVelocityX(0);
+            // si no presiono ningun boton...
             this.playAnim('stand', true);
-            return;
+            if (Math.abs(this.velocity.x) < HALF_ACCEL) {
+                this.setAccelerationX(0);
+                this.setVelocityX(0);
+                return;
+            }
+
+            if (this.goingLeft()) { this.setAccelerationX(DOUBLE_ACCEL); }
+            else { this.setAccelerationX(-DOUBLE_ACCEL); }
         } else {
             // jugador esta en el aire
+            this.setAccelerationX(0);
             this.playAnim('jump', true);
-            this.rotate(1);
+            this.rotate(this.velocity.x / 50);
         }
     }
 }

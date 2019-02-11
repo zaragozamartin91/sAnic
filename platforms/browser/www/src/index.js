@@ -74,7 +74,7 @@ document.addEventListener('deviceready', function () {
         //bg = this.add.tileSprite(100, 450, 800, 800,  'background');
         bg = new Background(this, worldWidth / 2, worldHeight / 2, worldWidth, worldHeight);
 
-        scoreText = this.add.text(0, 0, 'score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText = this.add.text(0, 0, 'Score: 0', { fontSize: '32px', fill: '#000' });
         scoreText.scrollFactorX = 0;
         scoreText.scrollFactorY = 0;
 
@@ -181,15 +181,9 @@ document.addEventListener('deviceready', function () {
             standing: player.body.touching.down
         };
 
-        console.log(JSON.stringify(playerStatus));
+        //console.log(JSON.stringify(playerStatus));
         player.update(playerStatus);
 
         bg.update(player.body.velocity.x, player.body.velocity.y);
-
-        // console.log("player.angle: " + player.angle);
-        // player.angle = player.angle + 1;
-
-
-        //console.log("player.body.position.x: " + player.body.position.x);
     }
 });

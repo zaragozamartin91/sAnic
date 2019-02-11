@@ -181,15 +181,9 @@ document.addEventListener('deviceready', function () {
             standing: player.body.touching.down
         };
 
-        console.log(JSON.stringify(playerStatus));
+        //console.log(JSON.stringify(playerStatus));
         player.update(playerStatus);
 
         bg.update(player.body.velocity.x, player.body.velocity.y);
-
-        // console.log("player.angle: " + player.angle);
-        // player.angle = player.angle + 1;
-
-
-        //console.log("player.body.position.x: " + player.body.position.x);
     }
 });
