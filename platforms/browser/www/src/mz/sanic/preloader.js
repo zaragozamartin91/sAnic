@@ -7,7 +7,8 @@ function preload() {
 
     this.load.multiatlas('sonic3', 'assets/sonic3.json', 'assets');
 
-    this.load.image('background' , 'assets/background.png');
+    // this.load.image('background' , 'assets/background.png');
+    this.load.image('background' , 'assets/angel_island_cloud.png');
 }
 
 export default preload;

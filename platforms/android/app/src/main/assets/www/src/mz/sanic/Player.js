@@ -114,46 +114,48 @@ class Player {
 
     goingRight() { return !this.goingLeft(); }
 
+    standing() { return this.body.touching.down; }
+
     /**
      * Actualiza el estado del jugador a partir de los inputs del mundo real.
      * @param {Object} inputStatus inputs del mundo real. 
      */
-    update({ pressLeft, pressRight, jump, standing }) {
+    update({ pressLeft, pressRight, pressJump }) {
         console.log("Vel X: ", this.velocity.x);
 
-        if (jump) {
-            this.setVelocityY(-330);
-            this.playAnim('jump', true);
-            return;
-        }
-
-        if (standing) {
+        if (this.standing()) {
             this.resetRotation();
+
+            if (pressJump) {
+                this.setVelocityY(-330);
+                this.playAnim('jump', true);
+                return;
+            }
 
             if (pressLeft) {
                 this.setAccelerationX(this.goingRight() ? -TRIPLE_ACCEL : -ACCEL);
-                this.playAnim('left', true);
                 this.flipX = true;
+                this.playAnim('left', true);
                 return;
             }
 
             if (pressRight) {
                 this.setAccelerationX(this.goingLeft() ? TRIPLE_ACCEL : ACCEL);
-                this.playAnim('right', true);
                 this.flipX = false;
+                this.playAnim('right', true);
                 return;
             }
 
             // si no presiono ningun boton...
-            this.playAnim('stand', true);
             if (Math.abs(this.velocity.x) < HALF_ACCEL) {
+                this.playAnim('stand', true);
                 this.setAccelerationX(0);
                 this.setVelocityX(0);
                 return;
             }
 
-            if (this.goingLeft()) { this.setAccelerationX(DOUBLE_ACCEL); }
-            else { this.setAccelerationX(-DOUBLE_ACCEL); }
+            this.playAnim(this.goingLeft() ? 'left' : 'right', true);
+            this.setAccelerationX(this.goingLeft() ? ACCEL : -ACCEL);
         } else {
             // jugador esta en el aire
             this.setAccelerationX(0);
