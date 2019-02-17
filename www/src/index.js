@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import preload from './mz/sanic/preloader';
 import Background from './mz/sanic/Background';
 import Player from './mz/sanic/Player';
+import GameText from './mz/sanic/GameText';
 
 // set to either landscape
 screen.orientation.lock('portrait-primary');
@@ -29,11 +30,11 @@ document.addEventListener('deviceready', function () {
 
     let game = new Phaser.Game(config);
 
-    const player = new Player(); // objeto del heroe
+    const player = new Player(gameScene); // objeto del heroe
     let cursors; // manejador de teclado
 
     let score = 0;
-    let scoreText;
+    const scoreText = new GameText(gameScene);
 
     let gameOver; // condicion de fin de juego
     let bombs; // grupo de bombas
@@ -74,9 +75,7 @@ document.addEventListener('deviceready', function () {
         //bg = this.add.tileSprite(100, 450, 800, 800,  'background');
         bg = new Background(this, worldWidth / 2, worldHeight / 2, worldWidth, worldHeight);
 
-        scoreText = this.add.text(0, 0, 'Score: 0', { fontSize: '32px', fill: '#000' });
-        scoreText.scrollFactorX = 0;
-        scoreText.scrollFactorY = 0;
+        scoreText.init(0, 0, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
         /* creo un grupo de cuerpos estaticos con iguales propiedades */
         /* this.physics refiere al objeto physics declarado en la configuracion */
@@ -93,7 +92,7 @@ document.addEventListener('deviceready', function () {
 
         /* creamos al heroe o jugador----------------------------------------------------------------------------------------------------------------------- */
         // agregamos un ArcadeSprite del jugador
-        player.init(gameScene, 100, 450);
+        player.init(100, 450);
 
         /* Con esta funcion podemos establecer los limites de la camara */
         //this.cameras.main.setBounds(0, 0, 800, 600);
@@ -109,7 +108,7 @@ document.addEventListener('deviceready', function () {
         /* In order to allow the player to collide with the platforms we can create a Collider object. 
         This object monitors two physics objects (which can include Groups) and checks for collisions or overlap between them. 
         If that occurs it can then optionally invoke your own callback, but for the sake of just colliding with platforms we don't require that */
-        this.physics.add.collider(player.sprite, platforms);
+        this.physics.add.collider(player.sprite, platforms, player.handlePlatforms());
 
         //Phaser has a built-in Keyboard manager 
         //This populates the cursors object with four properties: up, down, left, right, that are all instances of Key objects. 

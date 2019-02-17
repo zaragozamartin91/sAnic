@@ -8,10 +8,17 @@ const TRIPLE_ACCEL = ACCEL * 3;
 
 
 class Player {
-
-
-    init(scene, x, y) {
+    constructor(scene) {
         this.scene = scene;
+    }
+
+    /**
+     * Inicializa el jugador en una posicion.
+     * @param {Number} x Posicion x.
+     * @param {Number} y Posicion y.
+     */
+    init(x, y) {
+        let scene = this.scene;
         this.player = scene.physics.add.sprite(x, y, 'sonic3', 'stand/sonic3_sprites_01.png');
 
         /* The function generateFrameNames() creates a whole bunch of frame names by creating zero-padded numbers between start and end, 
@@ -51,6 +58,8 @@ class Player {
     get x() { return this.player.x; }
 
     get anims() { return this.player.anims; }
+
+    get angle() { return this.player.angle; }
 
     /**
      * Voltea sprite del jugador.
@@ -101,7 +110,17 @@ class Player {
      */
     rotate(degrees) { this.player.angle = this.player.angle + degrees; }
 
-    resetRotation() { this.player.angle = 0; }
+    /**
+     * Establece la velocidad angular del cuerpo.
+     * 
+     * @param {Number} value Velocidad angular.
+     */
+    setAngularVelocity(value) { this.player.setAngularVelocity(value); }
+
+    resetRotation() {
+        this.player.angle = 0;
+        this.setAngularVelocity(0);
+    }
 
     /**
      * Reproduce una animacion.
@@ -116,12 +135,22 @@ class Player {
 
     standing() { return this.body.touching.down; }
 
+    handlePlatforms() {
+        const self = this;
+        return function (_, __) {
+            let angle = Math.abs(self.angle) % 360;
+            let mustDie = angle > 30 && self.standing();
+            if (mustDie) console.log('MUST DIE! angle: ', angle);
+            else console.log('OUTSTANDING MOVE!');
+        }
+    };
+
     /**
      * Actualiza el estado del jugador a partir de los inputs del mundo real.
      * @param {Object} inputStatus inputs del mundo real. 
      */
     update({ pressLeft, pressRight, pressJump }) {
-        console.log("Vel X: ", this.velocity.x);
+        //console.log("Vel X: ", this.velocity.x);
 
         if (this.standing()) {
             this.resetRotation();
@@ -129,6 +158,7 @@ class Player {
             if (pressJump) {
                 this.setVelocityY(-330);
                 this.playAnim('jump', true);
+                this.setAngularVelocity(this.velocity.x);
                 return;
             }
 
@@ -158,9 +188,11 @@ class Player {
             this.setAccelerationX(this.goingLeft() ? ACCEL : -ACCEL);
         } else {
             // jugador esta en el aire
+            //console.log("angle: ", this.angle);
+
             this.setAccelerationX(0);
             this.playAnim('jump', true);
-            this.rotate(this.velocity.x / 50);
+            //this.rotate(this.velocity.x / 50);
         }
     }
 }
