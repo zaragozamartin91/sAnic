@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import preload from './mz/sanic/preloader';
+import Preloader from './mz/sanic/preloader';
 import Background from './mz/sanic/Background';
 import Player from './mz/sanic/Player';
 import GameText from './mz/sanic/GameText';
@@ -7,13 +7,18 @@ import GameText from './mz/sanic/GameText';
 // set to either landscape
 screen.orientation.lock('portrait-primary');
 
+const MAX_WIDTH = 1024;
+const MAX_HEIGHT = 768;
+
+const GRAVITY_VAL = 300;
+
 document.addEventListener('deviceready', function () {
     // create a new scene named "Game"
     let gameScene = new Phaser.Scene('Game');
 
-    const worldWidth = Math.min(window.innerWidth, 1366);
+    const worldWidth = Math.min(window.innerWidth, MAX_WIDTH);
     const half_worldWidth = worldWidth / 2;
-    const worldHeight = Math.min(window.innerHeight, 768);
+    const worldHeight = Math.min(window.innerHeight, MAX_HEIGHT);
     const half_worldHeight = worldHeight / 2;
 
     let config = {
@@ -24,11 +29,13 @@ document.addEventListener('deviceready', function () {
         scene: gameScene,
         physics: {
             default: 'arcade',
-            arcade: { gravity: { y: 300 }, debug: true }
+            arcade: { gravity: { y: GRAVITY_VAL }, debug: true }
         },
     };
 
     let game = new Phaser.Game(config);
+
+    const preloader = new Preloader(gameScene);
 
     const player = new Player(gameScene); // objeto del heroe
     let cursors; // manejador de teclado
@@ -42,30 +49,9 @@ document.addEventListener('deviceready', function () {
 
     let bg; // background
 
-    /**
-     * Funcion de resize que se ejecutara cada vez que el dispoistivo cambie de tamano o disposicion
-     */
-    function resize() {
-        console.log("RESIZE!");
-        let canvas = game.canvas;
-        let win_width = window.innerWidth;
-        let win_height = window.innerHeight;
-        let wratio = win_width / win_height;
-        let canvas_ratio = canvas.width / canvas.height;
-
-        if (wratio < canvas_ratio) {
-            canvas.style.width = win_width + "px";
-            canvas.style.height = (win_width / canvas_ratio) + "px";
-        } else {
-            canvas.style.width = (win_height * canvas_ratio) + "px";
-            canvas.style.height = win_height + "px";
-        }
-
-        // canvas.style.width = window.innerWidth + "px";
-        // canvas.style.height = window.innerHeight * 0.9 + "px";
-    }
-
-    gameScene.preload = preload;
+    gameScene.preload = function () {
+        preloader.init();
+    };
 
     gameScene.create = function () {
         // window.addEventListener('resize', resize);
@@ -170,7 +156,7 @@ document.addEventListener('deviceready', function () {
     }
 
     gameScene.update = function () {
-        document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
+        //document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
         //document.querySelector("#title").innerHTML = screen.orientation.type;
 
         if (gameOver) return;
@@ -184,7 +170,7 @@ document.addEventListener('deviceready', function () {
         //console.log(JSON.stringify(playerStatus));
         player.update(playerStatus);
 
-        angleText.setText('Angle: ' + parseInt(player.angle));
+        angleText.setText('Angle: ' + (parseInt(player.angle / 10) * 10));
 
         bg.update(player.body.velocity.x, player.body.velocity.y);
     }

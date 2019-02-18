@@ -6,6 +6,7 @@ const HALF_ACCEL = ACCEL / 2;
 const DOUBLE_ACCEL = ACCEL * 2;
 const TRIPLE_ACCEL = ACCEL * 3;
 
+const ANGLE_THRESHOLD = 45;
 
 class Player {
     constructor(scene) {
@@ -139,11 +140,12 @@ class Player {
         const self = this;
         return function (_, __) {
             let angle = Math.abs(self.angle) % 360;
-            let mustDie = angle > 30 && self.standing();
+            let mustDie = angle > ANGLE_THRESHOLD && self.standing();
             if (mustDie) console.log('MUST DIE! angle: ', angle);
-            else console.log('OUTSTANDING MOVE!');
+            else if (self.jumped) console.log('OUTSTANDING MOVE!');
         }
     };
+
 
     /**
      * Actualiza el estado del jugador a partir de los inputs del mundo real.
@@ -153,28 +155,14 @@ class Player {
         //console.log("Vel X: ", this.velocity.x);
 
         if (this.standing()) {
+            this.jumped = false;
             this.resetRotation();
 
-            if (pressJump) {
-                this.setVelocityY(-330);
-                this.playAnim('jump', true);
-                this.setAngularVelocity(this.velocity.x);
-                return;
-            }
+            if (pressJump) { return this.jump(); }
 
-            if (pressLeft) {
-                this.setAccelerationX(this.goingRight() ? -TRIPLE_ACCEL : -ACCEL);
-                this.flipX = true;
-                this.playAnim('left', true);
-                return;
-            }
+            if (pressLeft) { return this.goLeft(); }
 
-            if (pressRight) {
-                this.setAccelerationX(this.goingLeft() ? TRIPLE_ACCEL : ACCEL);
-                this.flipX = false;
-                this.playAnim('right', true);
-                return;
-            }
+            if (pressRight) { return this.goRight(); }
 
             // si no presiono ningun boton...
             if (Math.abs(this.velocity.x) < HALF_ACCEL) {
@@ -194,6 +182,25 @@ class Player {
             this.playAnim('jump', true);
             //this.rotate(this.velocity.x / 50);
         }
+    }
+
+    goRight() {
+        this.setAccelerationX(this.goingLeft() ? TRIPLE_ACCEL : ACCEL);
+        this.flipX = false;
+        this.playAnim('right', true);
+    }
+
+    jump() {
+        this.setVelocityY(-330);
+        this.playAnim('jump', true);
+        this.setAngularVelocity(this.velocity.x);
+        this.jumped = true;
+    }
+
+    goLeft() {
+        this.setAccelerationX(this.goingRight() ? -TRIPLE_ACCEL : -ACCEL);
+        this.flipX = true;
+        this.playAnim('left', true);
     }
 }
 

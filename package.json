@@ -9,7 +9,7 @@
         "add_browser": "cordova platform add browser",
         "add_android": "cordova platform add android"
     },
-    "author": "Apache Cordova Team",
+    "author": "Martin Zaragoza",
     "license": "Apache-2.0",
     "dependencies": {
         "cordova-android": "^7.1.4",

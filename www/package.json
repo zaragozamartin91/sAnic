@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
-    "compile_run": "webpack --config webpack.config.js ; cordova run browser --live-reload"
+    "compile": "webpack --config webpack.config.js",
+    "browser": "cordova run browser --live-reload",
+    "android": "cordova emulate android",
+    "compile_run_linux": "webpack --config webpack.config.js ; cordova run browser --live-reload",
+    "compile_run_win": "webpack --config webpack.config.js && cordova run browser --live-reload"
   },
   "author": "martin z",
   "license": "ISC",
