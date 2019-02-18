@@ -4,8 +4,8 @@ class GameText {
         this.scene = scene;
     }
 
-    init(x, y, value, { fontSize = '32px', fill = '#000' }) {
-        this.text = this.scene.add.text(x, y, value, { fontSize, fill });
+    init(x, y, value, cfg = { fontSize: '32px', fill: '#000' }) {
+        this.text = this.scene.add.text(x, y, value, cfg);
         this.text.scrollFactorX = 0;
         this.text.scrollFactorY = 0;
     }

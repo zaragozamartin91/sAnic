@@ -35,6 +35,7 @@ document.addEventListener('deviceready', function () {
 
     let score = 0;
     const scoreText = new GameText(gameScene);
+    const angleText = new GameText(gameScene);
 
     let gameOver; // condicion de fin de juego
     let bombs; // grupo de bombas
@@ -75,7 +76,8 @@ document.addEventListener('deviceready', function () {
         //bg = this.add.tileSprite(100, 450, 800, 800,  'background');
         bg = new Background(this, worldWidth / 2, worldHeight / 2, worldWidth, worldHeight);
 
-        scoreText.init(0, 0, 'Score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText.init(0, 0, 'Score: 0');
+        angleText.init(0, 32, 'Angle: 0');
 
         /* creo un grupo de cuerpos estaticos con iguales propiedades */
         /* this.physics refiere al objeto physics declarado en la configuracion */
@@ -181,6 +183,8 @@ document.addEventListener('deviceready', function () {
 
         //console.log(JSON.stringify(playerStatus));
         player.update(playerStatus);
+
+        angleText.setText('Angle: ' + parseInt(player.angle));
 
         bg.update(player.body.velocity.x, player.body.velocity.y);
     }
