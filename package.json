@@ -1,12 +1,13 @@
 {
-    "name": "helloworld",
-    "displayName": "HelloCordova",
+    "name": "sAnic",
+    "displayName": "Sanic",
     "version": "1.0.0",
-    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "description": "Juego mobile en cordova.",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "execute": "cordova run browser --live-reload"
+        "add_browser": "cordova platform add browser",
+        "add_android": "cordova platform add android"
     },
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
@@ -26,6 +27,7 @@
         ]
     },
     "devDependencies": {
+        "cordova": "^8.1.2",
         "webpack": "^4.29.0",
         "webpack-cli": "^3.2.1"
     }

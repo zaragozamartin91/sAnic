@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
-    "execute": "compile_and_run"
+    "compile_run": "webpack --config webpack.config.js ; cordova run browser --live-reload"
   },
   "author": "martin z",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "phaser": "^3.15.1"
   },
   "devDependencies": {
+    "cordova": "^8.1.2",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"
   }
