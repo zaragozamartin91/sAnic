@@ -1,7 +1,7 @@
 node_modules/
 package-lock.json
 
-platforms/android/app/build
-platforms/android/build
-platforms/android/CordovaLib/build
-platforms/android/.gradle/
+platforms/
+
+www/js/main.js
+
