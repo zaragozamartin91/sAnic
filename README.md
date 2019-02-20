@@ -14,6 +14,9 @@ __Nota__: Si los comandos anteriores no funcionan, probar instalar cordova
 mediante `npm install -g cordova` y luego correr `cordova platform add browser`.
 "npm run add_browser" no es del todo confiable en linux.
 
+Otra opcion es correr cordova desde los node_modules del proyecto:
+`node_modules\cordova\bin\cordova.cmd platform add browser`.
+
 ## Abrir juego en browser (ejecutar desde www/)
 
 Correr `npm run browser`.
