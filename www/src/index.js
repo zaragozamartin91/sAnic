@@ -3,6 +3,7 @@ import Preloader from './mz/sanic/preloader';
 import Background from './mz/sanic/Background';
 import Player from './mz/sanic/Player';
 import GameText from './mz/sanic/GameText';
+import Sparkle from './mz/sanic/Sparkle';
 
 // set to either landscape
 screen.orientation.lock('portrait-primary');
@@ -38,6 +39,7 @@ document.addEventListener('deviceready', function () {
     const preloader = new Preloader(gameScene);
 
     const player = new Player(gameScene); // objeto del heroe
+    const sparkle = new Sparkle(gameScene); // objeto brillo o sparkle
     let cursors; // manejador de teclado
 
     let score = 0;
@@ -81,6 +83,11 @@ document.addEventListener('deviceready', function () {
         /* creamos al heroe o jugador----------------------------------------------------------------------------------------------------------------------- */
         // agregamos un ArcadeSprite del jugador
         player.init(100, 450);
+
+        sparkle.init(100, 450);
+        sparkle.playAnim();
+
+        
 
         /* Con esta funcion podemos establecer los limites de la camara */
         //this.cameras.main.setBounds(0, 0, 800, 600);

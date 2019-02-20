@@ -8,6 +8,8 @@ const TRIPLE_ACCEL = ACCEL * 3;
 
 const ANGLE_THRESHOLD = 45;
 
+const EMPTY_LAMBDA = () => { };
+
 class Player {
     constructor(scene) {
         this.scene = scene;
@@ -48,6 +50,8 @@ class Player {
 
         /* Seteo la velocidad maxima del sprite en el eje x e y */
         this.player.setMaxVelocity(MAX_SPEED_X, MAX_SPEED_Y);
+
+        this.onLandSuccess = EMPTY_LAMBDA;
     }
 
     get sprite() { return this.player; }
@@ -80,6 +84,13 @@ class Player {
      * @param {Boolean} value True para que el sprite del jugador rebote.
      */
     setCollideWorldBounds(value) { this.player.setCollideWorldBounds(value); }
+
+    /**
+     * Establece la posicion.
+     * @param {Number} x posicion x.
+     * @param {Number} y posicion y.
+     */
+    setPosition(x, y) { this.sprite.setPosition(x, y); }
 
     /**
      * Establece la velocidad Horizontal
@@ -136,15 +147,28 @@ class Player {
 
     standing() { return this.body.touching.down; }
 
+    /**
+     * Genera un lambda / funcion q maneja la interaccion del jugador con la plataforma.
+     */
     handlePlatforms() {
         const self = this;
         return function (_, __) {
             let angle = Math.abs(self.angle) % 360;
             let mustDie = angle > ANGLE_THRESHOLD && self.standing();
-            if (mustDie) console.log('MUST DIE! angle: ', angle);
-            else if (self.jumped) console.log('OUTSTANDING MOVE!');
+
+            if (mustDie) { console.log('MUST DIE! angle: ', angle); }
+            else if (self.jumped) {
+                console.log('OUTSTANDING MOVE!');
+                this.onLandSuccess();
+            }
         }
     };
+
+    /**
+     * 
+     * @param {Function} f 
+     */
+    setOnLandSuccess(f) { this.onLandSuccess = f; }
 
 
     /**
