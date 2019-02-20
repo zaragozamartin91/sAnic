@@ -7,8 +7,12 @@ Todos los fuentes del juego deben colocarse en www/.
 
 ## Agregar plataformas
 
-Correr `npm run add_browser` para agregar Browser.
-Correr `npm run add_android` para agregar Android.
+* Correr `npm run add_browser` para agregar Browser.
+* Correr `npm run add_android` para agregar Android.
+
+__Nota__: Si los comandos anteriores no funcionan, probar instalar cordova
+mediante `npm install -g cordova` y luego correr `cordova platform add browser`.
+"npm run add_browser" no es del todo confiable en linux.
 
 ## Abrir juego en browser (ejecutar desde www/)
 

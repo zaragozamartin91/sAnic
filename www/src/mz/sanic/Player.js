@@ -159,7 +159,7 @@ class Player {
             if (mustDie) { console.log('MUST DIE! angle: ', angle); }
             else if (self.jumped) {
                 console.log('OUTSTANDING MOVE!');
-                this.onLandSuccess();
+                self.onLandSuccess();
             }
         }
     };

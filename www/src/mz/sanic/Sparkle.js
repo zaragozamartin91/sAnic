@@ -48,7 +48,14 @@ class Sparkle {
      */
     playAnim() { this.sprite.anims.play(ANIM_KEY, true); }
 
-
+    /**
+     * Desactiva un cuerpo de phaser.
+     * @param {boolean} disableGameObject Desactiva el game object.
+     * @param {boolean} hideGameObject Oculta el game object.
+     */
+    disableBody(disableGameObject, hideGameObject) {
+        this.sprite.disableBody(disableGameObject, hideGameObject);
+    }
 }
 
 export default Sparkle;
