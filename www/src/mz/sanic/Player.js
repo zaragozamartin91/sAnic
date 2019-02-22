@@ -65,6 +65,12 @@ class Player {
 
     get x() { return this.player.x; }
 
+    get y() { return this.player.y; }
+
+    get width() { return this.player.width; }
+
+    get height() { return this.player.height; }
+
     get anims() { return this.player.anims; }
 
     get angle() { return this.player.angle; }

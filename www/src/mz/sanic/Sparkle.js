@@ -1,4 +1,10 @@
+import Phaser from 'phaser';
+
 const ANIM_KEY = 'sparkle_anim';
+
+const EMPTY_LAMBDA = () => { };
+
+const ANIM_DURATION_MS = 500;
 
 class Sparkle {
     constructor(scene) {
@@ -18,9 +24,11 @@ class Sparkle {
             start: 1, end: 5, zeroPad: 2, prefix: 'sonic2_sparkles_', suffix: '.png'
         });
 
-        scene.anims.create({ key: ANIM_KEY, frames: frames, frameRate: 5 });
+        scene.anims.create({ key: ANIM_KEY, frames: frames, duration: ANIM_DURATION_MS });
 
-        this.p_sprite.alpha = 1;
+        this.p_sprite.on('animationcomplete', () => {
+            this.disableBody(true, true);
+        });
     }
 
     get sprite() { return this.p_sprite; }
@@ -46,7 +54,10 @@ class Sparkle {
     /**
      * Reproduce la animacion.
      */
-    playAnim() { this.sprite.anims.play(ANIM_KEY, true); }
+    playAnim(afterPlay = null) {
+        this.sprite.anims.play(ANIM_KEY, true);
+        if (afterPlay) setTimeout(afterPlay, ANIM_DURATION_MS);
+    }
 
     /**
      * Desactiva un cuerpo de phaser.
@@ -55,6 +66,22 @@ class Sparkle {
      */
     disableBody(disableGameObject, hideGameObject) {
         this.sprite.disableBody(disableGameObject, hideGameObject);
+    }
+
+    /**
+     * Activa el cuerpo del sprite
+     * @param {Boolean} reset Resetea el cuerpo del objeto y lo posiciona en (x,y)
+     * @param {Number} x posicion x
+     * @param {Number} y posicion y
+     * @param {Boolean} enableGameObject Activa el objeto
+     * @param {Boolean} showGameObject Muestra el objeto
+     */
+    enableBody(reset, x, y, enableGameObject, showGameObject) {
+        this.sprite.enableBody(reset, x, y, enableGameObject, showGameObject);
+    }
+
+    disableSparkle(animation) {
+        console.log("Disabling sparkle");
     }
 }
 

@@ -85,9 +85,14 @@ document.addEventListener('deviceready', function () {
         player.init(100, 450);
 
         sparkle.init(100, 450);
-        sparkle.playAnim();
+        sparkle.disableBody(true, true);
 
-        
+        player.setOnLandSuccess(() => {
+            sparkle.enableBody(true, player.x, player.y, true, true);
+            sparkle.setPosition(player.x, player.y + player.width / 2);
+            sparkle.playAnim();
+            //sparkle.playAnim(() => sparkle.disableBody(true, true));
+        });
 
         /* Con esta funcion podemos establecer los limites de la camara */
         //this.cameras.main.setBounds(0, 0, 800, 600);
@@ -114,7 +119,7 @@ document.addEventListener('deviceready', function () {
         let stars = this.physics.add.group({
             key: 'star', //texture key to be the star image by default
 
-            repeat: 11, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
+            repeat: 6, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
 
             //this is used to set the position of the 12 children the Group creates. Each child will be placed starting at x: 12, y: 0 and with an x step of 70
             setXY: { x: 12, y: 0, stepX: 70 }
