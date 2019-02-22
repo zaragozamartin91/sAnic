@@ -10,6 +10,9 @@ const ANGLE_THRESHOLD = 45;
 
 const EMPTY_LAMBDA = () => { };
 
+/* Variables temporales */
+const TEMP = { angle: 0, mustDie: false };
+
 class Player {
     constructor(scene) {
         this.scene = scene;
@@ -153,10 +156,10 @@ class Player {
     handlePlatforms() {
         const self = this;
         return function (_, __) {
-            let angle = Math.abs(self.angle) % 360;
-            let mustDie = angle > ANGLE_THRESHOLD && self.standing();
+            TEMP.angle = Math.abs(self.angle) % 360;
+            TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && self.standing();
 
-            if (mustDie) { console.log('MUST DIE! angle: ', angle); }
+            if (TEMP.mustDie) { console.log('MUST DIE! angle: ', TEMP.angle); }
             else if (self.jumped) {
                 console.log('OUTSTANDING MOVE!');
                 self.onLandSuccess();
