@@ -55,6 +55,7 @@ class Player {
         this.player.setMaxVelocity(MAX_SPEED_X, MAX_SPEED_Y);
 
         this.onLandSuccess = EMPTY_LAMBDA;
+        this.onLandFail = EMPTY_LAMBDA;
     }
 
     get sprite() { return this.player; }
@@ -165,8 +166,10 @@ class Player {
             TEMP.angle = Math.abs(self.angle) % 360;
             TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && self.standing();
 
-            if (TEMP.mustDie) { console.log('MUST DIE! angle: ', TEMP.angle); }
-            else if (self.jumped) {
+            if (TEMP.mustDie) {
+                console.log('MUST DIE! angle: ', TEMP.angle);
+                self.onLandFail();
+            } else if (self.jumped) {
                 console.log('OUTSTANDING MOVE!');
                 self.onLandSuccess();
             }
@@ -174,11 +177,16 @@ class Player {
     };
 
     /**
-     * 
-     * @param {Function} f 
+     * Establece la funcion a ejecutar cuando ocurre un landing exitoso
+     * @param {Function} f  funcion a ejecutar cuando ocurre un landing exitoso
      */
     setOnLandSuccess(f) { this.onLandSuccess = f; }
 
+    /**
+     * Establece la funcion a ejecutar cuando ocurre un landing fallido
+     * @param {Function} f funcion a ejecutar cuando ocurre un landing fallido
+     */
+    setOnLandFail(f) { this.onLandFail = f; }
 
     /**
      * Actualiza el estado del jugador a partir de los inputs del mundo real.

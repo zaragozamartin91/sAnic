@@ -16,6 +16,7 @@ class Preloader {
         this.scene.load.image('background' , 'assets/angel_island_cloud.png');
     
         this.scene.load.multiatlas('sparkle', 'assets/sparkle.json', 'assets');
+        this.scene.load.multiatlas('explosion', 'assets/explosion.json', 'assets');
     }
 }
 

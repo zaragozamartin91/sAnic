@@ -4,6 +4,7 @@ import Background from './mz/sanic/Background';
 import Player from './mz/sanic/Player';
 import GameText from './mz/sanic/GameText';
 import Sparkle from './mz/sanic/Sparkle';
+import Explosion from './mz/sanic/Explosion';
 
 // set to either landscape
 screen.orientation.lock('portrait-primary');
@@ -40,6 +41,8 @@ document.addEventListener('deviceready', function () {
 
     const player = new Player(gameScene); // objeto del heroe
     const sparkle = new Sparkle(gameScene); // objeto brillo o sparkle
+    const explosion = new Explosion(gameScene);
+
     let cursors; // manejador de teclado
 
     let score = 0;
@@ -87,11 +90,20 @@ document.addEventListener('deviceready', function () {
         sparkle.init(100, 450);
         sparkle.disableBody(true, true);
 
+        explosion.init(100, 450);
+        explosion.disableBody(true, true);
+
         player.setOnLandSuccess(() => {
-            sparkle.enableBody(true, player.x, player.y, true, true);
+            sparkle.enableBody(true, player.x, player.y);
             sparkle.setPosition(player.x, player.y + player.width / 2);
             sparkle.playAnim();
             //sparkle.playAnim(() => sparkle.disableBody(true, true));
+        });
+
+        player.setOnLandFail(() => {
+            explosion.enableBody(true , player.x , player.y);
+            explosion.setPosition(player.x , player.y);
+            explosion.playAnim();
         });
 
         /* Con esta funcion podemos establecer los limites de la camara */
