@@ -22,22 +22,12 @@ class Sparkle {
 
         scene.anims.create({ key: ANIM_KEY, frames: frames, duration: ANIM_DURATION_MS });
 
-        this.p_sprite.on('animationcomplete', () => {
-            this.disableBody(true, true);
-        });
+        this.p_sprite.on('animationcomplete', () => this.disableBody());
     }
 
     get sprite() { return this.p_sprite; }
 
-    get body() { return this.sprite.body; }
-
-    get velocity() { return this.sprite.body.velocity; }
-
-    get x() { return this.sprite.x; }
-
     get anims() { return this.sprite.anims; }
-
-    get angle() { return this.sprite.angle; }
 
     /**
      * Establece la posicion.
@@ -50,9 +40,7 @@ class Sparkle {
     /**
      * Reproduce la animacion.
      */
-    playAnim() {
-        this.sprite.anims.play(ANIM_KEY, true);
-    }
+    playAnim() { this.sprite.anims.play(ANIM_KEY, true); }
 
     /**
   * Desactiva un cuerpo de phaser.

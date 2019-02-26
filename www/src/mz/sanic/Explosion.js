@@ -27,15 +27,7 @@ class Explosion {
 
     get sprite() { return this.p_sprite; }
 
-    get body() { return this.sprite.body; }
-
-    get velocity() { return this.sprite.body.velocity; }
-
-    get x() { return this.sprite.x; }
-
     get anims() { return this.sprite.anims; }
-
-    get angle() { return this.sprite.angle; }
 
     /**
      * Establece la posicion.
@@ -48,9 +40,7 @@ class Explosion {
     /**
      * Reproduce la animacion.
      */
-    playAnim() {
-        this.sprite.anims.play(ANIM_KEY, true);
-    }
+    playAnim() { this.sprite.anims.play(ANIM_KEY, true); }
 
     /**
      * Desactiva un cuerpo de phaser.
@@ -72,7 +62,6 @@ class Explosion {
     enableBody(reset, x, y, enableGameObject = true, showGameObject = true) {
         this.sprite.enableBody(reset, x, y, enableGameObject, showGameObject);
     }
-
 }
 
 export default Explosion;
