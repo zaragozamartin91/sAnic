@@ -158,6 +158,28 @@ class Player {
     standing() { return this.body.touching.down; }
 
     /**
+     * Marca al jugador como muerto
+     */
+    die() {
+        this.scene.physics.pause();
+        this.sprite.setTint(0xff0000);
+        this.sprite.anims.play('stand');
+        this.dead = true;
+
+        window.setTimeout(() => {
+            this.resurrect();
+            this.scene.scene.restart();
+        }, 1000);
+    }
+
+    /**
+     * Marca al jugador como vivo
+     */
+    resurrect() {
+        this.dead = false;
+    }
+
+    /**
      * Genera un lambda / funcion q maneja la interaccion del jugador con la plataforma.
      */
     handlePlatforms() {

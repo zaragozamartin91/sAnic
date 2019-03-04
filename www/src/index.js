@@ -15,13 +15,14 @@ const MAX_HEIGHT = 768;
 const GRAVITY_VAL = 300;
 
 document.addEventListener('deviceready', function () {
-    // create a new scene named "Game"
-    let gameScene = new Phaser.Scene('Game');
-
+    
     const worldWidth = Math.min(window.innerWidth, MAX_WIDTH);
     const half_worldWidth = worldWidth / 2;
     const worldHeight = Math.min(window.innerHeight, MAX_HEIGHT);
     const half_worldHeight = worldHeight / 2;
+    
+    // create a new scene named "Game"
+    let gameScene = new Phaser.Scene('Game');
 
     let config = {
         type: Phaser.AUTO,
@@ -104,6 +105,7 @@ document.addEventListener('deviceready', function () {
             explosion.enableBody(true , player.x , player.y);
             explosion.setPosition(player.x , player.y);
             explosion.playAnim();
+            player.die();
         });
 
         /* Con esta funcion podemos establecer los limites de la camara */
@@ -170,10 +172,7 @@ document.addEventListener('deviceready', function () {
         this.physics.add.collider(bombs, platforms);
 
         this.physics.add.collider(player.sprite, bombs, (p, _) => {
-            this.physics.pause();
-            p.setTint(0xff0000);
-            p.anims.play('turn');
-            gameOver = true;
+            player.die();
         });
 
         console.log({ player });
@@ -183,7 +182,10 @@ document.addEventListener('deviceready', function () {
         //document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
         //document.querySelector("#title").innerHTML = screen.orientation.type;
 
-        if (gameOver) return;
+        // if (player.dead) {
+        //     player.resurrect();
+        //     gameScene.scene.restart();
+        // };
 
         const playerStatus = {
             pressLeft: cursors.left.isDown || (this.input.pointer1.isDown && this.input.pointer1.x <= half_worldWidth),
