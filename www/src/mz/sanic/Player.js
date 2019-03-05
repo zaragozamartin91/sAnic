@@ -32,21 +32,6 @@ class Player {
         // let standFrames = scene.anims.generateFrameNames('sonic3', {
         //     start: 1, end: 13, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
         // });
-        this.loadAnims(scene);
-
-        /* Seteo la velocidad maxima del sprite en el eje x e y */
-        this.player.setMaxVelocity(MAX_SPEED_X, MAX_SPEED_Y);
-
-        this.onLandSuccess = EMPTY_LAMBDA;
-        this.onLandFail = EMPTY_LAMBDA;
-        this.onDeath = EMPTY_LAMBDA;
-    }
-
-    /**
-     * Carga las animaciones del jugador
-     */
-    loadAnims() {
-        let scene = this.scene;
         let standFrames = scene.anims.generateFrameNames('sonic3', {
             start: 1, end: 1, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
         });
@@ -64,6 +49,13 @@ class Player {
         scene.anims.create({ key: 'right', frames: walkFrames, frameRate: 10, repeat: -1 });
         /* creamos la animacion de salto */
         scene.anims.create({ key: 'jump', frames: jumpFrames, frameRate: 1, repeat: -1 });
+
+        /* Seteo la velocidad maxima del sprite en el eje x e y */
+        this.player.setMaxVelocity(MAX_SPEED_X, MAX_SPEED_Y);
+
+        this.onLandSuccess = EMPTY_LAMBDA;
+        this.onLandFail = EMPTY_LAMBDA;
+        this.onDeath = EMPTY_LAMBDA;
     }
 
     get sprite() { return this.player; }
