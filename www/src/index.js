@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Preloader from './mz/sanic/preloader';
+import Preloader from './mz/sanic/Preloader';
 import Background from './mz/sanic/Background';
 import Player from './mz/sanic/Player';
 import GameText from './mz/sanic/GameText';
@@ -56,10 +56,12 @@ document.addEventListener('deviceready', function () {
     let bg; // background
 
     gameScene.preload = function () {
+        console.log("PRELOAD");
         preloader.init();
     };
 
     gameScene.create = function () {
+        console.log("CREATE");
         // window.addEventListener('resize', resize);
         // resize();
 

@@ -1,17 +1,20 @@
+import AssetLoader from './AssetLoader';
+
 const MAX_SPEED_X = 200;
 const MAX_SPEED_Y = 2000;
 
+/* Aceleracion del jugador mientras camina */
 const ACCEL = MAX_SPEED_X * 3 / 4;
 const HALF_ACCEL = ACCEL / 2;
-const DOUBLE_ACCEL = ACCEL * 2;
 const TRIPLE_ACCEL = ACCEL * 3;
 
+/* Limite o tolerancia de angulo de caida */
 const ANGLE_THRESHOLD = 45;
 
 const EMPTY_LAMBDA = () => { };
 
 /* Variables temporales */
-const TEMP = { angle: 0, mustDie: false , landSuccess: false };
+const TEMP = { angle: 0, mustDie: false, landSuccess: false };
 
 class Player {
     constructor(scene) {
@@ -27,28 +30,30 @@ class Player {
         let scene = this.scene;
         this.player = scene.physics.add.sprite(x, y, 'sonic3', 'stand/sonic3_sprites_01.png');
 
-        /* The function generateFrameNames() creates a whole bunch of frame names by creating zero-padded numbers between start and end, 
-        surrounded by prefix and suffix). 1 is the start index, 13 the end index and the 2 is the number of digits to use */
-        // let standFrames = scene.anims.generateFrameNames('sonic3', {
-        //     start: 1, end: 13, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
-        // });
-        let standFrames = scene.anims.generateFrameNames('sonic3', {
-            start: 1, end: 1, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
+        AssetLoader.loadFor(scene, 'player', () => {
+            /* The function generateFrameNames() creates a whole bunch of frame names by creating zero-padded numbers between start and end, 
+            surrounded by prefix and suffix). 1 is the start index, 13 the end index and the 2 is the number of digits to use */
+            // let standFrames = scene.anims.generateFrameNames('sonic3', {
+            //     start: 1, end: 13, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
+            // });
+            const standFrames = scene.anims.generateFrameNames('sonic3', {
+                start: 1, end: 1, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
+            });
+            const walkFrames = scene.anims.generateFrameNames('sonic3', {
+                start: 18, end: 25, zeroPad: 2, prefix: 'walk/sonic3_sprites_', suffix: '.png'
+            });
+            const jumpFrames = scene.anims.generateFrameNames('sonic3', {
+                start: 55, end: 55, zeroPad: 2, prefix: 'jump/sonic3_sprites_', suffix: '.png'
+            });
+            /* creamos la animacion del movimiento hacia la izquierda */
+            scene.anims.create({ key: 'left', frames: walkFrames, frameRate: 10, repeat: -1 });
+            /* creamos la animacion de quedarse quieto */
+            scene.anims.create({ key: 'stand', frames: standFrames, frameRate: 1, repeat: -1 });
+            /* creamos la animacion del movimiento hacia la derecha */
+            scene.anims.create({ key: 'right', frames: walkFrames, frameRate: 10, repeat: -1 });
+            /* creamos la animacion de salto */
+            scene.anims.create({ key: 'jump', frames: jumpFrames, frameRate: 1, repeat: -1 });
         });
-        let walkFrames = scene.anims.generateFrameNames('sonic3', {
-            start: 18, end: 25, zeroPad: 2, prefix: 'walk/sonic3_sprites_', suffix: '.png'
-        });
-        let jumpFrames = scene.anims.generateFrameNames('sonic3', {
-            start: 55, end: 55, zeroPad: 2, prefix: 'jump/sonic3_sprites_', suffix: '.png'
-        });
-        /* creamos la animacion del movimiento hacia la izquierda */
-        scene.anims.create({ key: 'left', frames: walkFrames, frameRate: 10, repeat: -1 });
-        /* creamos la animacion de quedarse quieto */
-        scene.anims.create({ key: 'stand', frames: standFrames, frameRate: 1, repeat: -1 });
-        /* creamos la animacion del movimiento hacia la derecha */
-        scene.anims.create({ key: 'right', frames: walkFrames, frameRate: 10, repeat: -1 });
-        /* creamos la animacion de salto */
-        scene.anims.create({ key: 'jump', frames: jumpFrames, frameRate: 1, repeat: -1 });
 
         /* Seteo la velocidad maxima del sprite en el eje x e y */
         this.player.setMaxVelocity(MAX_SPEED_X, MAX_SPEED_Y);
@@ -188,8 +193,8 @@ class Player {
             if (TEMP.mustDie) {
                 console.log('MUST DIE! angle: ', TEMP.angle);
                 return self.onLandFail();
-            } 
-            
+            }
+
             if (TEMP.landSuccess) {
                 console.log('OUTSTANDING MOVE!');
                 self.onLandSuccess();

@@ -1,3 +1,5 @@
+import AssetLoader from './AssetLoader';
+
 const ANIM_KEY = 'explosion_anim';
 
 const ANIM_DURATION_MS = 500;
@@ -16,11 +18,13 @@ class Explosion {
         const scene = this.scene;
         this.p_sprite = scene.physics.add.staticSprite(x, y, 'explosion', 'sonic2_expl_01.png');
 
-        const frames = scene.anims.generateFrameNames('explosion', {
-            start: 1, end: 5, zeroPad: 2, prefix: 'sonic2_expl_', suffix: '.png'
-        });
+        AssetLoader.loadFor(scene, 'explosion', () => {
+            const frames = scene.anims.generateFrameNames('explosion', {
+                start: 1, end: 5, zeroPad: 2, prefix: 'sonic2_expl_', suffix: '.png'
+            });
 
-        scene.anims.create({ key: ANIM_KEY, frames: frames, duration: ANIM_DURATION_MS });
+            scene.anims.create({ key: ANIM_KEY, frames: frames, duration: ANIM_DURATION_MS });
+        });
 
         this.p_sprite.on('animationcomplete', () => this.disableBody(true, true));
     }
