@@ -11,7 +11,7 @@ const ANGLE_THRESHOLD = 45;
 const EMPTY_LAMBDA = () => { };
 
 /* Variables temporales */
-const TEMP = { angle: 0, mustDie: false };
+const TEMP = { angle: 0, mustDie: false , landSuccess: false };
 
 class Player {
     constructor(scene) {
@@ -32,6 +32,21 @@ class Player {
         // let standFrames = scene.anims.generateFrameNames('sonic3', {
         //     start: 1, end: 13, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
         // });
+        this.loadAnims(scene);
+
+        /* Seteo la velocidad maxima del sprite en el eje x e y */
+        this.player.setMaxVelocity(MAX_SPEED_X, MAX_SPEED_Y);
+
+        this.onLandSuccess = EMPTY_LAMBDA;
+        this.onLandFail = EMPTY_LAMBDA;
+        this.onDeath = EMPTY_LAMBDA;
+    }
+
+    /**
+     * Carga las animaciones del jugador
+     */
+    loadAnims() {
+        let scene = this.scene;
         let standFrames = scene.anims.generateFrameNames('sonic3', {
             start: 1, end: 1, zeroPad: 2, prefix: 'stand/sonic3_sprites_', suffix: '.png'
         });
@@ -41,7 +56,6 @@ class Player {
         let jumpFrames = scene.anims.generateFrameNames('sonic3', {
             start: 55, end: 55, zeroPad: 2, prefix: 'jump/sonic3_sprites_', suffix: '.png'
         });
-
         /* creamos la animacion del movimiento hacia la izquierda */
         scene.anims.create({ key: 'left', frames: walkFrames, frameRate: 10, repeat: -1 });
         /* creamos la animacion de quedarse quieto */
@@ -50,12 +64,6 @@ class Player {
         scene.anims.create({ key: 'right', frames: walkFrames, frameRate: 10, repeat: -1 });
         /* creamos la animacion de salto */
         scene.anims.create({ key: 'jump', frames: jumpFrames, frameRate: 1, repeat: -1 });
-
-        /* Seteo la velocidad maxima del sprite en el eje x e y */
-        this.player.setMaxVelocity(MAX_SPEED_X, MAX_SPEED_Y);
-
-        this.onLandSuccess = EMPTY_LAMBDA;
-        this.onLandFail = EMPTY_LAMBDA;
     }
 
     get sprite() { return this.player; }
@@ -161,15 +169,11 @@ class Player {
      * Marca al jugador como muerto
      */
     die() {
-        this.scene.physics.pause();
         this.sprite.setTint(0xff0000);
         this.sprite.anims.play('stand');
         this.dead = true;
 
-        window.setTimeout(() => {
-            this.resurrect();
-            this.scene.scene.restart();
-        }, 1000);
+        this.onDeath();
     }
 
     /**
@@ -187,11 +191,14 @@ class Player {
         return function (_, __) {
             TEMP.angle = Math.abs(self.angle) % 360;
             TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && self.standing();
+            TEMP.landSuccess = self.jumped && TEMP.angle <= ANGLE_THRESHOLD && self.standing();
 
             if (TEMP.mustDie) {
                 console.log('MUST DIE! angle: ', TEMP.angle);
-                self.onLandFail();
-            } else if (self.jumped) {
+                return self.onLandFail();
+            } 
+            
+            if (TEMP.landSuccess) {
                 console.log('OUTSTANDING MOVE!');
                 self.onLandSuccess();
             }
@@ -209,6 +216,12 @@ class Player {
      * @param {Function} f funcion a ejecutar cuando ocurre un landing fallido
      */
     setOnLandFail(f) { this.onLandFail = f; }
+
+    /**
+     * Establece la funcion a ejecutar cuando el jugador muere.
+     * @param {Function} f funcion a ejecutar cuando el jugador muere.
+     */
+    setOnDeath(f) { this.onDeath = f; }
 
     /**
      * Actualiza el estado del jugador a partir de los inputs del mundo real.

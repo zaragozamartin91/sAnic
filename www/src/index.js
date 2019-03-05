@@ -15,12 +15,12 @@ const MAX_HEIGHT = 768;
 const GRAVITY_VAL = 300;
 
 document.addEventListener('deviceready', function () {
-    
+
     const worldWidth = Math.min(window.innerWidth, MAX_WIDTH);
     const half_worldWidth = worldWidth / 2;
     const worldHeight = Math.min(window.innerHeight, MAX_HEIGHT);
     const half_worldHeight = worldHeight / 2;
-    
+
     // create a new scene named "Game"
     let gameScene = new Phaser.Scene('Game');
 
@@ -102,10 +102,18 @@ document.addEventListener('deviceready', function () {
         });
 
         player.setOnLandFail(() => {
-            explosion.enableBody(true , player.x , player.y);
-            explosion.setPosition(player.x , player.y);
+            explosion.enableBody(true, player.x, player.y);
+            explosion.setPosition(player.x, player.y);
             explosion.playAnim();
             player.die();
+        });
+
+        player.setOnDeath(() => {
+            gameScene.physics.pause();
+            window.setTimeout(() => {
+                player.resurrect();
+                gameScene.scene.restart();
+            }, 1000);
         });
 
         /* Con esta funcion podemos establecer los limites de la camara */
