@@ -161,6 +161,7 @@ function build(worldWidth, worldHeight) {
         });
 
         console.log({ player });
+        
     }
 
     gameScene.update = function () {
