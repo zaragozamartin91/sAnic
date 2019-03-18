@@ -14,7 +14,7 @@ const ANGLE_THRESHOLD = 45;
 const EMPTY_LAMBDA = () => { };
 
 /* Variables temporales */
-const TEMP = { angle: 0, mustDie: false, landSuccess: false };
+const TEMP = { angle: 0, mustDie: false, landSuccess: false, angularAccel: 0 };
 
 class Player {
     constructor(scene) {
@@ -68,6 +68,10 @@ class Player {
     get body() { return this.player.body; }
 
     get velocity() { return this.player.body.velocity; }
+
+    get angularVelocity() { return this.body.angularVelocity; }
+
+    get angularAcceleration() { return this.body.angularAcceleration; }
 
     get x() { return this.player.x; }
 
@@ -143,6 +147,13 @@ class Player {
      * @param {Number} value Velocidad angular.
      */
     setAngularVelocity(value) { this.player.setAngularVelocity(value); }
+
+    /**
+     * Establece la aceleracion angular del cuerpo.
+     * 
+     * @param {Number} value Aceleracion angular.
+     */
+    setAngularAcceleration(value) { this.player.setAngularAcceleration(value); }
 
     resetRotation() {
         this.player.angle = 0;
@@ -248,12 +259,16 @@ class Player {
             this.playAnim(this.goingLeft() ? 'left' : 'right', true);
             this.setAccelerationX(this.goingLeft() ? ACCEL : -ACCEL);
         } else {
-            // jugador esta en el aire
-            //console.log("angle: ", this.angle);
-
             this.setAccelerationX(0);
-            this.playAnim('jump', true);
-            //this.rotate(this.velocity.x / 50);
+            this.playAnim('jump');
+
+            console.log('Velocidad angular: ', this.angularVelocity);
+
+            if (pressLeft) { return this.rotateLeftMidair(); }
+
+            if (pressRight) { return this.rotateRightMidair(); }
+
+            return this.setAngularAcceleration(0);
         }
     }
 
@@ -266,7 +281,8 @@ class Player {
     jump() {
         this.setVelocityY(-330);
         this.playAnim('jump', true);
-        this.setAngularVelocity(this.velocity.x);
+        this.initialAngularVelocity = this.velocity.x;
+        this.setAngularVelocity(this.initialAngularVelocity);
         this.jumped = true;
     }
 
@@ -274,6 +290,16 @@ class Player {
         this.setAccelerationX(this.goingRight() ? -TRIPLE_ACCEL : -ACCEL);
         this.flipX = true;
         this.playAnim('left', true);
+    }
+
+    rotateLeftMidair() {
+        TEMP.angularAccel = Math.abs(this.initialAngularVelocity) * -1;
+        return this.setAngularAcceleration(TEMP.angularAccel);
+    }
+
+    rotateRightMidair() {
+        TEMP.angularAccel = Math.abs(this.initialAngularVelocity);
+        return this.setAngularAcceleration(TEMP.angularAccel);
     }
 }
 

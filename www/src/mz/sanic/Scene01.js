@@ -118,7 +118,7 @@ function build(worldWidth, worldHeight) {
         let stars = this.physics.add.group({
             key: 'star', //texture key to be the star image by default
 
-            repeat: 6, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
+            repeat: 1, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
 
             //this is used to set the position of the 12 children the Group creates. Each child will be placed starting at x: 12, y: 0 and with an x step of 70
             setXY: { x: 12, y: 0, stepX: 70 }
