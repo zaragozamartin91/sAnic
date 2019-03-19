@@ -194,23 +194,24 @@ class Player {
     /**
      * Genera un lambda / funcion q maneja la interaccion del jugador con la plataforma.
      */
-    handlePlatforms() {
-        const self = this;
-        return function (_, __) {
-            TEMP.angle = Math.abs(self.angle) % 360;
-            TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && self.standing();
-            TEMP.landSuccess = self.jumped && TEMP.angle <= ANGLE_THRESHOLD && self.standing();
+    handlePlatforms(pressJump) {
+        TEMP.angle = Math.abs(this.angle) % 360;
+        TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && this.standing();
+        TEMP.landSuccess = this.jumped && TEMP.angle <= ANGLE_THRESHOLD && this.standing();
 
-            if (TEMP.mustDie) {
-                console.log('MUST DIE! angle: ', TEMP.angle);
-                return self.onLandFail();
-            }
-
-            if (TEMP.landSuccess) {
-                console.log('OUTSTANDING MOVE!');
-                self.onLandSuccess();
-            }
+        if (TEMP.mustDie) {
+            console.log('MUST DIE! angle: ', TEMP.angle);
+            return this.onLandFail();
         }
+
+        if (TEMP.landSuccess) {
+            console.log('OUTSTANDING MOVE!');
+            this.onLandSuccess();
+        }
+
+        this.jumped = false;
+        this.resetRotation();
+        if (pressJump) { this.jump(); }
     };
 
     /**
@@ -239,11 +240,6 @@ class Player {
         //console.log("Vel X: ", this.velocity.x);
 
         if (this.standing()) {
-            this.jumped = false;
-            this.resetRotation();
-
-            if (pressJump) { return this.jump(); }
-
             if (pressLeft) { return this.goLeft(); }
 
             if (pressRight) { return this.goRight(); }
