@@ -13,7 +13,7 @@ document.addEventListener('deviceready', function () {
     const worldHeight = Math.min(window.innerHeight, MAX_HEIGHT);
 
     // create a new scene named "Game"
-    let gameScene = Scene01.build(worldWidth , worldHeight);
+    let gameScene = new Scene01(worldWidth, worldHeight).build();
 
     let config = {
         type: Phaser.AUTO,

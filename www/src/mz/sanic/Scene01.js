@@ -7,188 +7,201 @@ import Sparkle from './Sparkle';
 import Explosion from './Explosion';
 
 
-function build(worldWidth, worldHeight) {
-    const half_worldWidth = worldWidth / 2;
-    const half_worldHeight = worldHeight / 2;
+class Scene01 {
+    constructor(worldWidth, worldHeight) {
+        this.worldWidth = worldWidth;
+        this.worldHeight = worldHeight;
+        this.half_worldWidth = worldWidth / 2;
+        this.half_worldHeight = worldHeight / 2;
 
-    // create a new scene named "Game"
-    let gameScene = new Phaser.Scene('Game');
+        // create a new scene named "Game"
+        this.gameScene = new Phaser.Scene('Game');
 
-    const preloader = new Preloader(gameScene);
+        this.preloader = new Preloader(this.gameScene);
 
-    const player = new Player(gameScene); // objeto del heroe
-    const sparkle = new Sparkle(gameScene); // objeto brillo o sparkle
-    const explosion = new Explosion(gameScene);
+        this.player = new Player(this.gameScene); // objeto del heroe
+        this.sparkle = new Sparkle(this.gameScene); // objeto brillo o sparkle
+        this.explosion = new Explosion(this.gameScene); // explosion
 
-    let score = 0;
-    const scoreText = new GameText(gameScene);
-    const angleText = new GameText(gameScene);
+        this.score = 0;
+        this.scoreText = new GameText(this.gameScene);
+        this.angleText = new GameText(this.gameScene);
 
-    let bombs; // grupo de bombas
-    let bg; // background
+        this.bg = new Background(this.gameScene);
+    }
 
-    let cursors; // manejador de teclado
-    let pointer1; // manejador de puntero tactil
+    get input() { return this.gameScene.input; }
 
-    gameScene.preload = function () {
-        console.log("PRELOAD");
-        preloader.init();
-    };
+    get physics() { return this.gameScene.physics; }
 
-    gameScene.create = function () {
-        console.log("CREATE");
+    get cameras() { return this.gameScene.cameras; }
 
+    /** Obtiene el manejador del puntero tactil */
+    get pointer1() { return this.input.pointer1; }
+
+    /** Obtiene el manejador de teclado */
+    get cursors() {
         //Phaser has a built-in Keyboard manager 
         //This populates the cursors object with four properties: up, down, left, right, that are all instances of Key objects. 
-        cursors = this.input.keyboard.createCursorKeys();
+        if (!this.cs) { this.cs = this.input.keyboard.createCursorKeys(); }
+        return this.cs;
+    }
 
-        // puntero tactil
-        pointer1 = this.input.pointer1;
+    /** Obtiene el SceneManager de esta escena */
+    get scene() { return this.gameScene.scene; }
+
+    checkLeftPress() {
+        return this.cursors.left.isDown || (this.pointer1.isDown && this.pointer1.x <= this.half_worldWidth);
+    }
+
+    checkRightPress() {
+        return this.cursors.right.isDown || (this.pointer1.isDown && this.pointer1.x > this.half_worldWidth);
+    }
+
+    checkJumpPress() {
+        return this.cursors.up.isDown || (this.pointer1.isDown && this.pointer1.y < this.half_worldHeight);
+    }
+
+    preload() {
+        console.log("PRELOAD");
+        this.preloader.init();
+    }
+
+    create() {
+        console.log("CREATE");
 
         // window.addEventListener('resize', resize);
         // resize();
 
-        bg = new Background(this, worldWidth / 2, worldHeight / 2, worldWidth, worldHeight);
-
-        scoreText.init(0, 0, 'Score: 0');
-        angleText.init(0, 32, 'Angle: 0');
+        this.bg.init(this.half_worldWidth, this.half_worldHeight, this.worldWidth, this.worldHeight);
+        this.scoreText.init(0, 0, 'Score: 0');
+        this.angleText.init(0, 32, 'Angle: 0');
 
         /* creo un grupo de cuerpos estaticos con iguales propiedades */
         /* this.physics refiere al objeto physics declarado en la configuracion */
-        let platforms = this.physics.add.staticGroup();
-
+        this.platforms = this.physics.add.staticGroup();
         /* we scale this platform x2 with the function setScale(2) */
         /* The call to refreshBody() is required because we have scaled a static physics body, so we have to tell the physics world about the changes we made */
-        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-
+        this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
         // parametros: posX , posY , sprite
-        platforms.create(600, 400, 'ground');
-        platforms.create(50, 250, 'ground');
-        platforms.create(750, 220, 'ground');
+        this.platforms.create(600, 400, 'ground');
+        this.platforms.create(50, 250, 'ground');
+        this.platforms.create(750, 220, 'ground');
+
+        this.bombs = this.physics.add.group();
+
+        this.sparkle.init(100, 450);
+        this.sparkle.disableBody(true, true);
+
+        this.explosion.init(100, 450);
+        this.explosion.disableBody(true, true);
 
         /* creamos al heroe o jugador----------------------------------------------------------------------------------------------------------------------- */
         // agregamos un ArcadeSprite del jugador
-        sparkle.init(100, 450);
-        sparkle.disableBody(true, true);
 
-        explosion.init(100, 450);
-        explosion.disableBody(true, true);
-
-        player.init(100, 450);
-        player.setInputManager({ checkJumpPress, checkLeftPress, checkRightPress });
-
-
-        player.setOnLandSuccess(() => {
-            sparkle.enableBody(true, player.x, player.y);
-            sparkle.setPosition(player.x, player.y + player.width / 2);
-            sparkle.playAnim();
-            //sparkle.playAnim(() => sparkle.disableBody(true, true));
+        this.player.init(100, 450);
+        this.player.setInputManager({
+            checkJumpPress: () => this.checkJumpPress(),
+            checkLeftPress: () => this.checkLeftPress(),
+            checkRightPress: () => this.checkRightPress()
         });
 
-        player.setOnLandFail(() => {
-            explosion.enableBody(true, player.x, player.y);
-            explosion.setPosition(player.x, player.y);
-            explosion.playAnim();
-            player.die();
+        this.player.setOnLandSuccess(() => {
+            this.sparkle.enableBody(true, this.player.x, this.player.y);
+            this.sparkle.setPosition(this.player.x, this.player.y + this.player.width / 2);
+            this.sparkle.playAnim();
         });
 
-        player.setOnDeath(() => {
-            gameScene.physics.pause();
+        this.player.setOnLandFail(() => {
+            this.explosion.enableBody(true, this.player.x, this.player.y);
+            this.explosion.setPosition(this.player.x, this.player.y);
+            this.explosion.playAnim();
+            this.player.die();
+        });
+
+        this.player.setOnDeath(() => {
+            this.physics.pause();
             window.setTimeout(() => {
-                player.resurrect();
-                gameScene.scene.restart();
+                this.player.resurrect();
+                this.scene.restart();
             }, 1000);
         });
 
-        /* Con esta funcion podemos establecer los limites de la camara */
-        //this.cameras.main.setBounds(0, 0, 800, 600);
-        // la camara principal sigue al jugador
-        this.cameras.main.startFollow(player.sprite);
-        this.cameras.main.setZoom(1);
-
         /* when it lands after jumping it will bounce ever so slightly */
-        player.setBounce(0.0);
+        this.player.setBounce(0.0);
         /* Esta funcion hace que el personaje colisione con los limites del juego */
-        player.setCollideWorldBounds(false);
+        this.player.setCollideWorldBounds(false);
+
+        //Let's drop a sprinkling of stars into the scene and allow the player to collect them ----------------------------------------------------
+        //Groups are able to take configuration objects to aid in their setup
+        this.stars = this.physics.add.group({
+            key: 'star', //texture key to be the star image by default
+            repeat: 6, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
+            setXY: { x: 12, y: 0, stepX: 70 } //this is used to set the position of the 12 children the Group creates. Each child will be placed starting at x: 12, y: 0 and with an x step of 70
+        });
+
+        this.stars.children.iterate(function (child) { child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8)); });
+
+        /* DETECCION DE COLISION ----------------------------------------------------------------------------------------------------------------- */
 
         /* In order to allow the player to collide with the platforms we can create a Collider object. 
         This object monitors two physics objects (which can include Groups) and checks for collisions or overlap between them. 
         If that occurs it can then optionally invoke your own callback, but for the sake of just colliding with platforms we don't require that */
-        this.physics.add.collider(player.sprite, platforms, player.platformHandler(checkJumpPress));
+        this.physics.add.collider(this.player.sprite, this.platforms, this.player.platformHandler(() => this.checkJumpPress()));
 
-        //Let's drop a sprinkling of stars into the scene and allow the player to collect them ----------------------------------------------------
-        //Groups are able to take configuration objects to aid in their setup
-        let stars = this.physics.add.group({
-            key: 'star', //texture key to be the star image by default
-
-            repeat: 6, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
-
-            //this is used to set the position of the 12 children the Group creates. Each child will be placed starting at x: 12, y: 0 and with an x step of 70
-            setXY: { x: 12, y: 0, stepX: 70 }
-        });
-
-        stars.children.iterate(function (child) {
-            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-        });
-
-        this.physics.add.collider(stars, platforms);
+        this.physics.add.collider(this.stars, this.platforms);
 
         //This tells Phaser to check for an overlap between the player and any star in the stars Group
-        //this.physics.add.overlap(player, stars, collectStar, null, this);
-        this.physics.add.overlap(player.sprite, stars, (_, star) => {
+        //this.physics.add.overlap(this.player, this.stars, collectStar, null, this);
+        this.physics.add.overlap(this.player.sprite, this.stars, (_, star) => {
             star.disableBody(true, true);
 
-            score += 10;
-            scoreText.setText('Score: ' + score);
+            this.score += 10;
+            this.scoreText.setText('Score: ' + this.score);
 
-            //We use a Group method called countActive to see how many stars are left alive
-            if (stars.countActive(true) === 0) {
+            //We use a Group method called countActive to see how many this.stars are left alive
+            if (this.stars.countActive(true) === 0) {
                 //enableBody(reset, x, y, enableGameObject, showGameObject)
-                stars.children.iterate(child => child.enableBody(true, child.x, 0, true, true));
-                let x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+                this.stars.children.iterate(child => child.enableBody(true, child.x, 0, true, true));
+                let x = (this.player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
-                let bomb = bombs.create(x, 16, 'bomb');
+                let bomb = this.bombs.create(x, 16, 'bomb');
                 bomb.setBounce(1);
                 bomb.setCollideWorldBounds(false);
                 bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
             }
         });
 
-        // se agregan las bombas ---------------------------------------------------------------------------------
-        bombs = this.physics.add.group();
+        this.physics.add.collider(this.bombs, this.platforms);
 
-        this.physics.add.collider(bombs, platforms);
-
-        this.physics.add.collider(player.sprite, bombs, (p, _) => {
-            player.die();
+        this.physics.add.collider(this.player.sprite, this.bombs, (p, _) => {
+            this.player.die();
         });
 
-        console.log({ player });
+        /* MANEJO DE CAMARA ----------------------------------------------------------------------------------------------------------- */
+
+        /* Con esta funcion podemos establecer los limites de la camara */
+        //this.cameras.main.setBounds(0, 0, 800, 600);
+        // la camara principal sigue al jugador
+        this.cameras.main.startFollow(this.player.sprite);
+        this.cameras.main.setZoom(1);
     }
 
-    gameScene.update = function () {
-        player.update();
 
-        angleText.setText('Angle: ' + (parseInt(player.angle / 10) * 10));
-
-        bg.update(player.body.velocity.x, player.body.velocity.y);
+    update() {
+        this.player.update();
+        this.angleText.setText('Angle: ' + (parseInt(this.player.angle / 10) * 10));
+        this.bg.update(this.player.body.velocity.x, this.player.body.velocity.y);
     }
 
-    function checkLeftPress() {
-        return cursors.left.isDown || (pointer1.isDown && pointer1.x <= half_worldWidth);
-    }
+    build() {
+        this.gameScene.preload = () => this.preload();
+        this.gameScene.create = () => this.create();
+        this.gameScene.update = () => this.update();
 
-    function checkRightPress() {
-        return cursors.right.isDown || (pointer1.isDown && pointer1.x > half_worldWidth);
+        return this.gameScene;
     }
-
-    function checkJumpPress() {
-        return cursors.up.isDown || (pointer1.isDown && pointer1.y < half_worldHeight);
-    }
-
-    return gameScene;
 }
 
 
-
-export default { build };
+export default Scene01;
