@@ -61,6 +61,11 @@ class Player {
         this.onLandSuccess = EMPTY_LAMBDA;
         this.onLandFail = EMPTY_LAMBDA;
         this.onDeath = EMPTY_LAMBDA;
+
+        /* Manejadores de input desde el mundo exterior */
+        this.checkJumpPress = EMPTY_LAMBDA;
+        this.checkLeftPress = EMPTY_LAMBDA;
+        this.checkRightPress = EMPTY_LAMBDA;
     }
 
     get sprite() { return this.player; }
@@ -91,6 +96,16 @@ class Player {
      * @param {Boolean} value True para voltear sprite.
      */
     set flipX(value) { this.player.flipX = value; }
+
+    /**
+     * Establece los manejadores de input (teclado y tactil)
+     * @param {Object} inputHandler Manejador de los inputs del mundo exterior. 
+     */
+    setInputManager({ checkJumpPress, checkLeftPress, checkRightPress }) {
+        this.checkJumpPress = checkJumpPress;
+        this.checkLeftPress = checkLeftPress;
+        this.checkRightPress = checkRightPress;
+    }
 
     /**
      * Establece el rebote del jugador
@@ -192,25 +207,29 @@ class Player {
     }
 
     /**
-     * Genera un lambda / funcion q maneja la interaccion del jugador con la plataforma.
+     * Genera un manejador de colision con plataformas.
+     * 
      */
-    handlePlatforms() {
-        const self = this;
-        return function (_, __) {
-            TEMP.angle = Math.abs(self.angle) % 360;
-            TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && self.standing();
-            TEMP.landSuccess = self.jumped && TEMP.angle <= ANGLE_THRESHOLD && self.standing();
+    platformHandler() {
+        return (_, __) => {
+            TEMP.angle = Math.abs(this.angle) % 360;
+            TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && this.standing();
+            TEMP.landSuccess = this.jumped && TEMP.angle <= ANGLE_THRESHOLD && this.standing();
 
             if (TEMP.mustDie) {
                 console.log('MUST DIE! angle: ', TEMP.angle);
-                return self.onLandFail();
+                return this.onLandFail();
             }
 
             if (TEMP.landSuccess) {
                 console.log('OUTSTANDING MOVE!');
-                self.onLandSuccess();
+                this.onLandSuccess();
             }
-        }
+
+            this.jumped = false;
+            this.resetRotation();
+            if (this.checkJumpPress()) { this.jump(); }
+        };
     };
 
     /**
@@ -233,20 +252,14 @@ class Player {
 
     /**
      * Actualiza el estado del jugador a partir de los inputs del mundo real.
-     * @param {Object} inputStatus inputs del mundo real. 
      */
-    update({ pressLeft, pressRight, pressJump }) {
+    update() {
         //console.log("Vel X: ", this.velocity.x);
 
         if (this.standing()) {
-            this.jumped = false;
-            this.resetRotation();
+            if (this.checkLeftPress()) { return this.goLeft(); }
 
-            if (pressJump) { return this.jump(); }
-
-            if (pressLeft) { return this.goLeft(); }
-
-            if (pressRight) { return this.goRight(); }
+            if (this.checkRightPress()) { return this.goRight(); }
 
             // si no presiono ningun boton...
             if (Math.abs(this.velocity.x) < HALF_ACCEL) {
@@ -264,9 +277,9 @@ class Player {
 
             console.log('Velocidad angular: ', this.angularVelocity);
 
-            if (pressLeft) { return this.rotateLeftMidair(); }
+            if (this.checkLeftPress()) { return this.rotateLeftMidair(); }
 
-            if (pressRight) { return this.rotateRightMidair(); }
+            if (this.checkRightPress()) { return this.rotateRightMidair(); }
 
             return this.setAngularAcceleration(0);
         }

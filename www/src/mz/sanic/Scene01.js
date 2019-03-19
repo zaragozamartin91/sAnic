@@ -20,15 +20,15 @@ function build(worldWidth, worldHeight) {
     const sparkle = new Sparkle(gameScene); // objeto brillo o sparkle
     const explosion = new Explosion(gameScene);
 
-    let cursors; // manejador de teclado
-
     let score = 0;
     const scoreText = new GameText(gameScene);
     const angleText = new GameText(gameScene);
 
     let bombs; // grupo de bombas
-
     let bg; // background
+
+    let cursors; // manejador de teclado
+    let pointer1; // manejador de puntero tactil
 
     gameScene.preload = function () {
         console.log("PRELOAD");
@@ -37,12 +37,17 @@ function build(worldWidth, worldHeight) {
 
     gameScene.create = function () {
         console.log("CREATE");
+
+        //Phaser has a built-in Keyboard manager 
+        //This populates the cursors object with four properties: up, down, left, right, that are all instances of Key objects. 
+        cursors = this.input.keyboard.createCursorKeys();
+
+        // puntero tactil
+        pointer1 = this.input.pointer1;
+
         // window.addEventListener('resize', resize);
         // resize();
 
-        //background = this.add.tileSprite(0, 0, 400, 300, 'sky');
-        //this.add.image(400, 300, 'sky');
-        //bg = this.add.tileSprite(100, 450, 800, 800,  'background');
         bg = new Background(this, worldWidth / 2, worldHeight / 2, worldWidth, worldHeight);
 
         scoreText.init(0, 0, 'Score: 0');
@@ -63,13 +68,15 @@ function build(worldWidth, worldHeight) {
 
         /* creamos al heroe o jugador----------------------------------------------------------------------------------------------------------------------- */
         // agregamos un ArcadeSprite del jugador
-        player.init(100, 450);
-
         sparkle.init(100, 450);
         sparkle.disableBody(true, true);
 
         explosion.init(100, 450);
         explosion.disableBody(true, true);
+
+        player.init(100, 450);
+        player.setInputManager({ checkJumpPress, checkLeftPress, checkRightPress });
+
 
         player.setOnLandSuccess(() => {
             sparkle.enableBody(true, player.x, player.y);
@@ -107,18 +114,14 @@ function build(worldWidth, worldHeight) {
         /* In order to allow the player to collide with the platforms we can create a Collider object. 
         This object monitors two physics objects (which can include Groups) and checks for collisions or overlap between them. 
         If that occurs it can then optionally invoke your own callback, but for the sake of just colliding with platforms we don't require that */
-        this.physics.add.collider(player.sprite, platforms, player.handlePlatforms());
-
-        //Phaser has a built-in Keyboard manager 
-        //This populates the cursors object with four properties: up, down, left, right, that are all instances of Key objects. 
-        cursors = this.input.keyboard.createCursorKeys();
+        this.physics.add.collider(player.sprite, platforms, player.platformHandler(checkJumpPress));
 
         //Let's drop a sprinkling of stars into the scene and allow the player to collect them ----------------------------------------------------
         //Groups are able to take configuration objects to aid in their setup
         let stars = this.physics.add.group({
             key: 'star', //texture key to be the star image by default
 
-            repeat: 1, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
+            repeat: 6, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
 
             //this is used to set the position of the 12 children the Group creates. Each child will be placed starting at x: 12, y: 0 and with an x step of 70
             setXY: { x: 12, y: 0, stepX: 70 }
@@ -161,30 +164,26 @@ function build(worldWidth, worldHeight) {
         });
 
         console.log({ player });
-        
     }
 
     gameScene.update = function () {
-        //document.querySelector("#title").innerHTML = JSON.stringify({ x: this.input.pointer1.x, y: this.input.pointer1.y });
-        //document.querySelector("#title").innerHTML = screen.orientation.type;
-
-        // if (player.dead) {
-        //     player.resurrect();
-        //     gameScene.scene.restart();
-        // };
-
-        const playerStatus = {
-            pressLeft: cursors.left.isDown || (this.input.pointer1.isDown && this.input.pointer1.x <= half_worldWidth),
-            pressRight: cursors.right.isDown || (this.input.pointer1.isDown && this.input.pointer1.x > half_worldWidth),
-            pressJump: cursors.up.isDown || (this.input.pointer1.isDown && this.input.pointer1.y < half_worldHeight)
-        };
-
-        //console.log(JSON.stringify(playerStatus));
-        player.update(playerStatus);
+        player.update();
 
         angleText.setText('Angle: ' + (parseInt(player.angle / 10) * 10));
 
         bg.update(player.body.velocity.x, player.body.velocity.y);
+    }
+
+    function checkLeftPress() {
+        return cursors.left.isDown || (pointer1.isDown && pointer1.x <= half_worldWidth);
+    }
+
+    function checkRightPress() {
+        return cursors.right.isDown || (pointer1.isDown && pointer1.x > half_worldWidth);
+    }
+
+    function checkJumpPress() {
+        return cursors.up.isDown || (pointer1.isDown && pointer1.y < half_worldHeight);
     }
 
     return gameScene;
