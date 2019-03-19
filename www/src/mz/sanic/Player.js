@@ -231,7 +231,7 @@ class Player {
             this.resetRotation();
             if (this.checkJumpPress()) { return this.jump(); }
 
-            this.standing = true;
+            this.standed = true;
         };
     };
 
@@ -259,7 +259,7 @@ class Player {
     update() {
         //console.log("Vel X: ", this.velocity.x);
 
-        if (this.standing) {
+        if (this.standed && this.touchingDown()) {
             if (this.checkLeftPress()) { return this.goLeft(); }
             if (this.checkRightPress()) { return this.goRight(); }
 
@@ -272,8 +272,10 @@ class Player {
             }
 
             this.playAnim(this.goingLeft() ? 'left' : 'right', true);
-            this.setAccelerationX(this.goingLeft() ? ACCEL : -ACCEL);
-        } else {
+            return this.setAccelerationX(this.goingLeft() ? ACCEL : -ACCEL);
+        }
+
+        if (!this.touchingDown()) {
             this.setAccelerationX(0);
             this.playAnim('jump');
 
@@ -298,7 +300,7 @@ class Player {
         this.initialAngularVelocity = this.velocity.x;
         this.setAngularVelocity(this.initialAngularVelocity);
         this.jumped = true;
-        this.standing = false;
+        this.standed = false;
     }
 
     goLeft() {
