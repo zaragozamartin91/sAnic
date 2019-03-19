@@ -186,7 +186,7 @@ class Player {
 
     goingRight() { return !this.goingLeft(); }
 
-    standing() { return this.body.touching.down; }
+    touchingDown() { return this.body.touching.down; }
 
     /**
      * Marca al jugador como muerto
@@ -213,8 +213,8 @@ class Player {
     platformHandler() {
         return (_, __) => {
             TEMP.angle = Math.abs(this.angle) % 360;
-            TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && this.standing();
-            TEMP.landSuccess = this.jumped && TEMP.angle <= ANGLE_THRESHOLD && this.standing();
+            TEMP.mustDie = TEMP.angle > ANGLE_THRESHOLD && this.touchingDown();
+            TEMP.landSuccess = this.jumped && TEMP.angle <= ANGLE_THRESHOLD && this.touchingDown();
 
             if (TEMP.mustDie) {
                 console.log('MUST DIE! angle: ', TEMP.angle);
@@ -226,9 +226,12 @@ class Player {
                 this.onLandSuccess();
             }
 
+            /* Verifico si el jugador debe saltar */
             this.jumped = false;
             this.resetRotation();
-            if (this.checkJumpPress()) { this.jump(); }
+            if (this.checkJumpPress()) { return this.jump(); }
+
+            this.standed = true;
         };
     };
 
@@ -256,9 +259,8 @@ class Player {
     update() {
         //console.log("Vel X: ", this.velocity.x);
 
-        if (this.standing()) {
+        if (this.standed && this.touchingDown()) {
             if (this.checkLeftPress()) { return this.goLeft(); }
-
             if (this.checkRightPress()) { return this.goRight(); }
 
             // si no presiono ningun boton...
@@ -270,15 +272,16 @@ class Player {
             }
 
             this.playAnim(this.goingLeft() ? 'left' : 'right', true);
-            this.setAccelerationX(this.goingLeft() ? ACCEL : -ACCEL);
-        } else {
+            return this.setAccelerationX(this.goingLeft() ? ACCEL : -ACCEL);
+        }
+
+        if (!this.touchingDown()) {
             this.setAccelerationX(0);
             this.playAnim('jump');
 
             console.log('Velocidad angular: ', this.angularVelocity);
 
             if (this.checkLeftPress()) { return this.rotateLeftMidair(); }
-
             if (this.checkRightPress()) { return this.rotateRightMidair(); }
 
             return this.setAngularAcceleration(0);
@@ -297,6 +300,7 @@ class Player {
         this.initialAngularVelocity = this.velocity.x;
         this.setAngularVelocity(this.initialAngularVelocity);
         this.jumped = true;
+        this.standed = false;
     }
 
     goLeft() {
