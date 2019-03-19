@@ -29,7 +29,6 @@ function build(worldWidth, worldHeight) {
 
     let cursors; // manejador de teclado
     let pointer1; // manejador de puntero tactil
-    let inputStatus = { pressLeft: false, pressRight: false, pressJump: false }; // estado de los controles
 
     gameScene.preload = function () {
         console.log("PRELOAD");
@@ -69,13 +68,15 @@ function build(worldWidth, worldHeight) {
 
         /* creamos al heroe o jugador----------------------------------------------------------------------------------------------------------------------- */
         // agregamos un ArcadeSprite del jugador
-        player.init(100, 450);
-
         sparkle.init(100, 450);
         sparkle.disableBody(true, true);
 
         explosion.init(100, 450);
         explosion.disableBody(true, true);
+
+        player.init(100, 450);
+        player.setInputManager({ checkJumpPress, checkLeftPress, checkRightPress });
+
 
         player.setOnLandSuccess(() => {
             sparkle.enableBody(true, player.x, player.y);
@@ -113,16 +114,14 @@ function build(worldWidth, worldHeight) {
         /* In order to allow the player to collide with the platforms we can create a Collider object. 
         This object monitors two physics objects (which can include Groups) and checks for collisions or overlap between them. 
         If that occurs it can then optionally invoke your own callback, but for the sake of just colliding with platforms we don't require that */
-        this.physics.add.collider(player.sprite, platforms, (_, __) => {
-            player.handlePlatforms(checkJumpPress());
-        });
+        this.physics.add.collider(player.sprite, platforms, player.platformHandler(checkJumpPress));
 
         //Let's drop a sprinkling of stars into the scene and allow the player to collect them ----------------------------------------------------
         //Groups are able to take configuration objects to aid in their setup
         let stars = this.physics.add.group({
             key: 'star', //texture key to be the star image by default
 
-            repeat: 1, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
+            repeat: 6, //Because it creates 1 child automatically, repeating 11 times means we'll get 12 in total
 
             //this is used to set the position of the 12 children the Group creates. Each child will be placed starting at x: 12, y: 0 and with an x step of 70
             setXY: { x: 12, y: 0, stepX: 70 }
@@ -165,15 +164,10 @@ function build(worldWidth, worldHeight) {
         });
 
         console.log({ player });
-
     }
 
     gameScene.update = function () {
-        inputStatus.pressLeft = checkLeftPress();
-        inputStatus.pressRight = checkRightPress();
-        inputStatus.pressJump = checkJumpPress();
-
-        player.update(inputStatus);
+        player.update();
 
         angleText.setText('Angle: ' + (parseInt(player.angle / 10) * 10));
 
