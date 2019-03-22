@@ -6,17 +6,20 @@ import GameText from './GameText';
 import Sparkle from './Sparkle';
 import Explosion from './Explosion';
 import BaseScene from './BaseScene';
+import PlatformGroup from './PlatformGroup';
 
 
 class Scene01 extends BaseScene {
     constructor(worldWidth, worldHeight) {
         super(worldWidth, worldHeight)
-        
+
         this.preloader = new Preloader(this.gameScene);
 
         this.player = new Player(this.gameScene); // objeto del heroe
         this.sparkle = new Sparkle(this.gameScene); // objeto brillo o sparkle
         this.explosion = new Explosion(this.gameScene); // explosion
+
+        this.platforms = new PlatformGroup(this.gameScene);
 
         this.score = 0;
         this.scoreText = new GameText(this.gameScene);
@@ -40,17 +43,12 @@ class Scene01 extends BaseScene {
         this.bg.init(this.half_worldWidth, this.half_worldHeight, this.worldWidth, this.worldHeight);
         this.scoreText.init(0, 0, 'Score: 0');
         this.angleText.init(0, 32, 'Angle: 0');
-
-        /* creo un grupo de cuerpos estaticos con iguales propiedades */
-        /* this.physics refiere al objeto physics declarado en la configuracion */
-        this.platforms = this.physics.add.staticGroup();
-        /* we scale this platform x2 with the function setScale(2) */
-        /* The call to refreshBody() is required because we have scaled a static physics body, so we have to tell the physics world about the changes we made */
-        this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-        // parametros: posX , posY , sprite
-        this.platforms.create(600, 400, 'ground');
-        this.platforms.create(50, 250, 'ground');
-        this.platforms.create(750, 220, 'ground');
+        
+        this.platforms.init()
+            .create(400, 568, 2)
+            .create(600, 400)
+            .create(50, 250)
+            .create(750, 220);
 
         this.bombs = this.physics.add.group();
 
@@ -111,9 +109,9 @@ class Scene01 extends BaseScene {
         /* In order to allow the player to collide with the platforms we can create a Collider object. 
         This object monitors two physics objects (which can include Groups) and checks for collisions or overlap between them. 
         If that occurs it can then optionally invoke your own callback, but for the sake of just colliding with platforms we don't require that */
-        this.physics.add.collider(this.player.sprite, this.platforms, this.player.platformHandler(() => this.checkJumpPress()));
+        this.physics.add.collider(this.player.sprite, this.platforms.group, this.player.platformHandler(() => this.checkJumpPress()));
 
-        this.physics.add.collider(this.stars, this.platforms);
+        this.physics.add.collider(this.stars, this.platforms.group);
 
         //This tells Phaser to check for an overlap between the player and any star in the stars Group
         //this.physics.add.overlap(this.player, this.stars, collectStar, null, this);
@@ -136,7 +134,7 @@ class Scene01 extends BaseScene {
             }
         });
 
-        this.physics.add.collider(this.bombs, this.platforms);
+        this.physics.add.collider(this.bombs, this.platforms.group);
 
         this.physics.add.collider(this.player.sprite, this.bombs, (p, _) => {
             this.player.die();
