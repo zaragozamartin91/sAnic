@@ -5,23 +5,31 @@ Proyecto prototipo de sommersault trekking
 
 Todos los fuentes del juego deben colocarse en www/.
 
+## Instalar dependencias 
+
+Antes de correr comandos de cordova y webpack es necesario descargar las dependencias de node.
+
+* Correr `npm install` en / (raiz del proyecto)
+* Correr `npm install` en /www
+
+_Todos los comandos mencionados tipo 'npm run *' deben correrse desde www/_
+
 ## Agregar plataformas
 
 * Correr `npm run add_browser` para agregar Browser.
 * Correr `npm run add_android` para agregar Android.
 
-__Nota__: Si los comandos anteriores no funcionan, probar instalar cordova
-mediante `npm install -g cordova` y luego correr `cordova platform add browser`.
-"npm run add_browser" no es del todo confiable en linux.
+__Nota__: Si los comandos anteriores no funcionan, probar instalar cordova y webpack de forma global mediante `npm install -g cordova` y `npm install -g webpack` y luego correr `cordova platform add browser`.
 
-Otra opcion es correr cordova desde los node_modules del proyecto:
-`node_modules\cordova\bin\cordova.cmd platform add browser`.
+## Compilar fuentes (con webpack)
 
-## Abrir juego en browser (ejecutar desde www/)
+Correr `npm run compile`.
+
+## Abrir juego en browser
 
 Correr `npm run browser`.
 
-## Compilar y correr el juego (ejecutar desde www/)
+## Compilar y correr el juego
 
 Correr `npm run compile_run_win` en windows.
 Correr `npm run compile_run_linux` en linux.
