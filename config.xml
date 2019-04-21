@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>sAnic</name>
+    <name>sanic</name>
     <description>
-        Prototipo de juego sommersault trekking.
+        Prototipo de sommersault treking.
     </description>
-    <author email="zaragozamartin91@gmail.com" href="#">
+    <author email="zaragozamartin91@gmail.com" href="http://cordova.io">
         Martin Zaragoza
     </author>
     <content src="index.html" />
@@ -23,6 +23,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <plugin name="cordova-plugin-browsersync" spec="^1.1.0" />
-    <engine name="browser" spec="^5.0.4" />
+    <engine name="browser" spec="^6.0.0" />
 </widget>
